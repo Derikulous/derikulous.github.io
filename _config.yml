@@ -2,7 +2,7 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://derikblog.herokuapp.com/
+url: http://Derikulous.github.io
 title: Derik Strattan's Blog
 subtitle: Musings from a sentient being about Code and life.
 author: Derik Strattan
@@ -94,7 +94,7 @@ disqus_short_name:
 disqus_show_comment_count: false
 
 # Google Analytics
-google_analytics_tracking_id:
+google_analytics_tracking_id: UA-45794478-1
 
 # Facebook Like
 facebook_like: false

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: front-end | Derik Strattan's Blog]]></title>
-  <link href="http://derikblog.herokuapp.com//blog/categories/front-end/atom.xml" rel="self"/>
-  <link href="http://derikblog.herokuapp.com//"/>
-  <updated>2013-11-03T18:14:57-08:00</updated>
-  <id>http://derikblog.herokuapp.com//</id>
+  <link href="http://Derikulous.github.io/blog/categories/front-end/atom.xml" rel="self"/>
+  <link href="http://Derikulous.github.io/"/>
+  <updated>2013-11-16T14:44:50-08:00</updated>
+  <id>http://Derikulous.github.io/</id>
   <author>
     <name><![CDATA[Derik Strattan]]></name>
     
@@ -15,10 +15,10 @@
   
   <entry>
     <title type="html"><![CDATA[Installing Twitter Bootstrap]]></title>
-    <link href="http://derikblog.herokuapp.com//blog/2013/11/03/installing-twitter-bootstrap/"/>
+    <link href="http://Derikulous.github.io/blog/2013/11/03/installing-twitter-bootstrap/"/>
     <updated>2013-11-03T12:34:00-08:00</updated>
-    <id>http://derikblog.herokuapp.com//blog/2013/11/03/installing-twitter-bootstrap</id>
-    <content type="html"><![CDATA[<h1>Mission: Install and use Twitter Bootstrap</h1>
+    <id>http://Derikulous.github.io/blog/2013/11/03/installing-twitter-bootstrap</id>
+    <content type="html"><![CDATA[<h1>Mission: Install and use Twitter Bootstrap with Ruby on Rail</h1>
 
 <h2><strong>Boss</strong>: Twitter Bootstrap</h2>
 
