@@ -7,7 +7,7 @@
 	<meta name="author" content="Derik Strattan">
 
 	
-	<meta name="description" content="Winter is almost upon us; the perfect time for staying indoors and coding! I decided to move over this blog from Heroku to GitHub pages. In my next &hellip;">
+	<meta name="description" content="Winter is almost upon us; the perfect time for staying indoors and coding! Topics covered: Cloudfront configuration Cross-Origin Resource Sharing ( &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -99,25 +99,172 @@
 <h3> Winter is almost upon us; the perfect time for staying indoors and coding!</h3>
 
 
-<p>
-  I decided to move over this blog from <a href="https://www.heroku.com/">Heroku</a> to <a href="http://pages.github.com/">GitHub pages</a>. In my next post I will go over how I did this. For now, let&#8217;s focus on displaying <a href="http://fontawesome.io/"> FontAwesome</a> in Firefox using <a href="http://aws.amazon.com/cloudfront/"> AWS CloudFront.</a><br>
-</p>
-
-
-<h2>Topics covered:</h2>
+<h1>Topics covered:</h1>
 
 <ol>
-<li>Cloudfront configuration</li>
-<li>Cross-Origin Resource Sharing(CORS) gem</li>
+  <li>Cloudfront configuration</li>
+  <li>Cross-Origin Resource Sharing (CORS) gem</li>
 </ol>
 
 
-<h2>The problem?</h2>
+<h1>What are we learning?</h1>
 
 <p>
-  Today, I was updating my [Portfolio](http://www.derikstrattan.com/) with CloudFront. However
+  In my <a href="https://derikulous.github.io/year/11/03/installing-twitter-bootstrap/"> earlier</a> post, I described how to install Twitter Bootstrap in your Rails project. Today, I was updating my <a href="http://www.derikstrattan.com/">portfolio</a> to use <a href="http://aws.amazon.com/cloudfront/"> CloudFront.</a> as a content delivery service. After opening the page in Firefox, I noticed that the <a href="http://fontawesome.io/"> FontAwesome</a> icons were missing. This problem did NOT occur when opening in Chrome or Safari. After more than 4 hours of troubleshooting, I had the page loading properly. I sincerely hope that this post saves you countless hours and head scratching. Feel free to leave comments or suggestions. ^.^
 </p>
 
+
+<h1>FontAwesome</h1>
+
+<p>
+  When you download FontAwesome, you will notice that there are 4 different files. What are these? FontAwesome comes in multiple formats so the maximum number of users (read: browsers) can see your fonts:
+  <ol>
+    <li>Safari & Opera browsers = .toff & .otf</li>
+    <li>IE9+, Firefox, Chrome = .woff</li>
+    <li>iOS and Android = .svg</li>
+    <li>IE8 and older = .eot</li>
+  </ol>
+</p>
+
+
+<h1>HTTP Caching</h1>
+
+<p>
+  Before we dive head-first into setting up CloudFront, it&#8217;s worth taking a slight detour to learn about HTTP caching and headers. According to <a href="https://devcenter.heroku.com/articles/increasing-application-performance-with-http-cache-headers"> Heroku</a>, &#8220;HTTP caching occurs when the browser stores local copies of web resources for faster retrieval the next time the resource is required. As your application serves resources it can attach cache headers to the response specifying the desired cache behavior.&#8221; For our purposes, we need to understand <b>cache header</b>.
+</p>
+
+
+<p>
+  Firefox and IE9+ reject all cross-site font requests unless some specific headers are set, i.e. &#8220;`Access-Control-Allow-Origin&#8220;`. In other words, Firefox will not display a font if you use CloudFront to deliver content. For in-depth understanding, read more <a href="http://www.bryandragon.com/articles/rails-asset-pipeline-cdns-and-serving-cross-domain-fonts/">here</a> and <a href="http://stackoverflow.com/questions/11261805/rails-3-font-face-failing-in-production-with-firefox">here</a>. We&#8217;ll need to figure out a way to allow Firefox access to the fonts.
+</p>
+
+
+<h1>Configuring CloudFront</h1>
+
+<p>
+  <img src="https://www.llamaproducts.com/assets/product_pics/decal_meat_n_taters.gif"> <br> Ahhh, we have finally arrived at the meat and &#8216;taters of this article. Let&#8217;s set up CloudFront (if you have questions, refer to this <a href="https://devcenter.heroku.com/articles/using-amazon-cloudfront-cdn-with-rails#testing"><i>post</i></a> on Heroku. But first, what <b>IS</b> CloudFront? Many developers use Amazon S3 (simple storage service) to store static assets (e.g. images, javascript, CSS). It is also sometimes used to <b>serve</b> those assets, but this is not recommended because the S3 was not designed to serve files when your website is under heavy traffic. CloudFront is referred to as a Content Delivery Network (CDN), and acts to serve those assets that you stored on S3.
+</p>
+
+
+<h2>CloudFront setup</h2>
+
+<p>
+  <ol>
+    <li>Make an <a href="http://aws.amazon.com">AWS account</a>.</li>
+    <li>Login to your account, and go to <a href="https://console.aws.amazon.com/cloudfront/home">CloudFront control panel</a>. Click &#8216;Create distribution&#8217;, and when prompted for the delivery method, select &#8216;Web&#8217;. For now, use defaults. NOTE: If you wish to use CNAME, you must enter your domain under &#8216;Origin Domain Name&#8217;. </li><br> <img src="https://s3.amazonaws.com/heroku.devcenter/heroku_assets/images/224-original.jpg">
+  </ol>
+</p>
+
+
+<h2>Configure CloudFront and Rails</h2>
+
+<p><p>
+  1) In your Rails application, go to <code>config/environments/production.rb</code>.<br>
+  2) Look for the setting labelled <code>asset_host</code>. This setting is responsible for prepending a domain onto all asset links created via the built in asset helpers.<br>
+  3) In your CloudFront Management Console, select the distribution that you created. Click the link &ldquo;Distribution Settings&rdquo;. Look for the subheader <b>Domain Name</b>, and copy that domain name. In your Rails app, paste in the domain: <code>config.action_controller.asset_host = "&lt; YOUR DISTRIBUTION SUBDOMAIN&gt;.cloudfront.net"</code>.
+</p></p>
+
+<h2>Purge content from CloudFront</h2>
+
+<p>We need to create an invalidation in the <a href="https://console.aws.amazon.com/cloudfront/home">CloudFront Panel</a>.To read more about why, go <a href="http://www.red-team-design.com/firefox-doesnt-allow-cross-domain-fonts-by-default">here</a> <br>
+Let&rsquo;s find our fontawesome assets. In your terminal, go to: <code>~/project_name/public/assets</code> and type <code>ls -al fontawesome-webfont-*.*</code>. You should see something like this:
+<figure class='code'><figcaption><span>public/assets</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">fontawesome</span><span class="o">&ndash;</span><span class="n">webfont</span><span class="o">&ndash;</span><span class="mi">4</span><span class="n">d228e1a1ddd570d6380dcd9b1a11d5c</span><span class="o">.</span><span class="n">ttf</span>
+</span><span class='line'><span class="n">fontawesome</span><span class="o">&ndash;</span><span class="n">webfont</span><span class="o">&ndash;</span><span class="mi">6</span><span class="n">cfa562c51325bb1df40b64732dc8699</span><span class="o">.</span><span class="n">woff</span>
+</span><span class='line'><span class="n">fontawesome</span><span class="o">&ndash;</span><span class="n">webfont</span><span class="o">&ndash;</span><span class="mi">9169</span><span class="n">b7b7c593388d41dd3c339df5b86b</span><span class="o">.</span><span class="n">svg</span>
+</span><span class='line'><span class="n">fontawesome</span><span class="o">&ndash;</span><span class="n">webfont</span><span class="o">&ndash;</span><span class="n">e742c0f297e307a74bdf4ca3c19073a2</span><span class="o">.</span><span class="n">eot</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Back in the CloudFront Panel, choose the tab <strong>Invalidations</strong>. Click <button>Create Invalidation</button>.
+<br>
+<img src="http://user-image.logdown.io/user/1/blog/317/post/52439/eWU50lLhRqWSbj89efo7_invalid1.png" title="&#34;blog.xdite&#34;" alt="&#34;blog.xdite&#34;">
+<br>
+Paste in the above assets like this:
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">assets</span><span class="o">/</span><span class="n">fontawesome</span><span class="o">&ndash;</span><span class="n">webfont</span><span class="o">&ndash;</span><span class="mi">4</span><span class="n">d228e1a1ddd570d6380dcd9b1a11d5c</span><span class="o">.</span><span class="n">ttf</span>
+</span><span class='line'><span class="n">assets</span><span class="o">/</span><span class="n">fontawesome</span><span class="o">&ndash;</span><span class="n">webfont</span><span class="o">&ndash;</span><span class="mi">6</span><span class="n">cfa562c51325bb1df40b64732dc8699</span><span class="o">.</span><span class="n">woff</span>
+</span><span class='line'><span class="n">assets</span><span class="o">/</span><span class="n">fontawesome</span><span class="o">&ndash;</span><span class="n">webfont</span><span class="o">&ndash;</span><span class="mi">9169</span><span class="n">b7b7c593388d41dd3c339df5b86b</span><span class="o">.</span><span class="n">svg</span>
+</span><span class='line'><span class="n">assets</span><span class="o">/</span><span class="n">fontawesome</span><span class="o">&ndash;</span><span class="n">webfont</span><span class="o">&ndash;</span><span class="n">e742c0f297e307a74bdf4ca3c19073a2</span><span class="o">.</span><span class="n">eot</span>
+</span></code></pre></td></tr></table></div></figure>
+<br>
+<strong>IMPORTANT</strong> Don&rsquo;t forget to add <code>assets/</code> in front of the fontawesome.
+<br>
+Click <button>Invalidate</button>. Now wait for 5-10 minutes CDN cache to become invalidated.</p>
+
+<h1>Install the CORS gem</h1>
+
+<p>In your Gemfile:
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;rack-cors&#39;</span><span class="p">,</span> <span class="ss">:require</span> <span class="o">=&gt;</span> <span class="s1">&#39;rack/cors&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+Run <code>bundle</code>.
+<br>
+In your project folder, go to: <code>config/application.rb</code> and add the following:
+<br>
+<figure class='code'><figcaption><span>config/application.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Portfolio</span>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">Application</span> <span class="o">&lt;</span> <span class="ss">Rails</span><span class="p">:</span><span class="ss">:Application</span>
+</span><span class='line'>  <span class="c1"># &hellip;</span>
+</span><span class='line'>    <span class="n">config</span><span class="o">.</span><span class="n">middleware</span><span class="o">.</span><span class="n">insert_before</span> <span class="ss">ActionDispatch</span><span class="p">:</span><span class="ss">:Static</span><span class="p">,</span> <span class="ss">Rack</span><span class="p">:</span><span class="ss">:Cors</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">allow</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">origins</span> <span class="s1">&#39;<em>&#39;</span>
+</span><span class='line'>      <span class="n">resource</span> <span class="s1">&#39;</em>&#39;</span><span class="p">,</span>
+</span><span class='line'>      <span class="ss">headers</span><span class="p">:</span> <span class="ss">:any</span><span class="p">,</span>
+</span><span class='line'>      <span class="nb">methods</span><span class="p">:</span> <span class="o">[</span><span class="ss">:get</span><span class="p">,</span> <span class="ss">:options</span><span class="o">]</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="c1">#&hellip;</span>
+</span><span class='line'>    <span class="n">config</span><span class="o">.</span><span class="n">assets</span><span class="o">.</span><span class="n">paths</span> <span class="o">&lt;&lt;</span> <span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">,</span> <span class="s2">&quot;assets&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">config</span><span class="o">.</span><span class="n">assets</span><span class="o">.</span><span class="n">precompile</span> <span class="o">+=</span> <span class="sx">%w( .svg .eot .woff .ttf )</span>
+</span><span class='line'>    <span class="n">config</span><span class="o">.</span><span class="n">assets</span><span class="o">.</span><span class="n">header_rules</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>      <span class="ss">:global</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="s1">&#39;Cache-Control&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;public, max-age=31536000&#39;</span><span class="p">},</span>
+</span><span class='line'>      <span class="ss">:fonts</span>  <span class="o">=&gt;</span> <span class="p">{</span><span class="s1">&#39;Access-Control-Allow-Origin&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;*&#39;</span><span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+<br>
+The first part of this configuration puts the CORS gem at the top of your stack. Confirm this by running <code>rake middleware</code> in your terminal. Any header is now able to be retrieved via the <code>get</code> method. The second part precompiles the FontAwesome assets by specifically looking for their file extension. It also allows font control via the <code>header_rules</code>.</p>
+
+<h2>Push to Heroku</h2>
+
+<p><p>
+You are now ready to push everything up to Heroku. Don&rsquo;t forget to manually precompile assets, if necessary.
+</p></p>
+
+<h3>Additional Resources</h3>
+
+<p><a href="https://github.com/rumblelabs/asset_sync">Rails, S3, and asset sync</a><br>
+<a href="https://devcenter.heroku.com/articles/http-caching-ruby-rails">HTTP caching with Rails</a><br>
+<a href="https://devcenter.heroku.com/articles/rack-cache-memcached-rails31">Rack::Cache</a></p>
+
+<p><h3> What&rsquo;s next?</h3>
+  In the next blog, I will explain how I moved this blog over from <a href="https://www.heroku.com/">Heroku</a> to <a href="http://pages.github.com/">GitHub pages</a>. If this post helped you, feel free to leave a comment. Thanks and good luck coding!</p>
 
 		
 		
