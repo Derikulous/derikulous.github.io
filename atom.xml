@@ -4,7 +4,7 @@
   <title><![CDATA[Derik Strattan's Blog]]></title>
   <link href="http://Derikulous.github.io/atom.xml" rel="self"/>
   <link href="http://Derikulous.github.io/"/>
-  <updated>2013-11-16T14:44:50-08:00</updated>
+  <updated>2013-11-17T10:23:24-08:00</updated>
   <id>http://Derikulous.github.io/</id>
   <author>
     <name><![CDATA[Derik Strattan]]></name>
@@ -14,11 +14,43 @@
 
   
   <entry>
+    <title type="html"><![CDATA[How to display FontAwesome in Firefox using Rails and CloudFront]]></title>
+    <link href="http://Derikulous.github.ioyear/11/16/how-to-fontawesome/"/>
+    <updated>2013-11-16T16:33:00-08:00</updated>
+    <id>http://Derikulous.github.ioyear/11/16/how-to-fontawesome</id>
+    <content type="html"><![CDATA[<p><img src="http://25.media.tumblr.com/8f8d4d311eeca74a0496233c087dbbae/tumblr_mw6av9Opmb1rbnw5do2_500.gif" title="&#34;5 cm per second&#34;" alt="&#34;5 cm per second&#34;"></p>
+
+<h3> Winter is almost upon us; the perfect time for staying indoors and coding!</h3>
+
+
+<p>
+  I decided to move over this blog from <a href="https://www.heroku.com/">Heroku</a> to <a href="http://pages.github.com/">GitHub pages</a>. In my next post I will go over how I did this. For now, let&#8217;s focus on displaying <a href="http://fontawesome.io/"> FontAwesome</a> in Firefox using <a href="http://aws.amazon.com/cloudfront/"> AWS CloudFront.</a><br>
+</p>
+
+
+<h2>Topics covered:</h2>
+
+<ol>
+<li>Cloudfront configuration</li>
+<li>Cross-Origin Resource Sharing(CORS) gem</li>
+</ol>
+
+
+<h2>The problem?</h2>
+
+<p>
+  Today, I was updating my [Portfolio](http://www.derikstrattan.com/) with CloudFront. However
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Installing Twitter Bootstrap]]></title>
-    <link href="http://Derikulous.github.io/blog/2013/11/03/installing-twitter-bootstrap/"/>
+    <link href="http://Derikulous.github.ioyear/11/03/installing-twitter-bootstrap/"/>
     <updated>2013-11-03T12:34:00-08:00</updated>
-    <id>http://Derikulous.github.io/blog/2013/11/03/installing-twitter-bootstrap</id>
-    <content type="html"><![CDATA[<h1>Mission: Install and use Twitter Bootstrap with Ruby on Rail</h1>
+    <id>http://Derikulous.github.ioyear/11/03/installing-twitter-bootstrap</id>
+    <content type="html"><![CDATA[<h1>Mission: Install and use Twitter Bootstrap with Ruby on Rails</h1>
 
 <h2><strong>Boss</strong>: Twitter Bootstrap</h2>
 
@@ -127,9 +159,9 @@ I suggest diving deeper into all the benefits that Twitter Bootstrap provides. T
   
   <entry>
     <title type="html"><![CDATA[Hello, world]]></title>
-    <link href="http://Derikulous.github.io/blog/2013/10/28/hello-world/"/>
+    <link href="http://Derikulous.github.ioyear/10/28/hello-world/"/>
     <updated>2013-10-28T19:51:00-07:00</updated>
-    <id>http://Derikulous.github.io/blog/2013/10/28/hello-world</id>
+    <id>http://Derikulous.github.ioyear/10/28/hello-world</id>
     <content type="html"><![CDATA[<h1>Hello, world.</h1>
 
 <p>This post is intended so that I can get a feel for Octopress. In true coding fashion, I had a bit of trouble creating my first post thanks to an error with Rake.</p>
