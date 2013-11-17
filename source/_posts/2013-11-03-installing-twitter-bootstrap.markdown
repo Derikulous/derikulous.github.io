@@ -5,7 +5,7 @@ date: 2013-11-03 12:34
 comments: true
 categories: [Twitter Bootstrap, installation, troubleshooting, front-end]
 ---
-# Mission: Install and use Twitter Bootstrap with Ruby on Rail
+# Mission: Install and use Twitter Bootstrap with Ruby on Rails
 ## **Boss**: Twitter Bootstrap
 
 

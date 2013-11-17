@@ -4,7 +4,7 @@
   <title><![CDATA[Category: front-end | Derik Strattan's Blog]]></title>
   <link href="http://Derikulous.github.io/blog/categories/front-end/atom.xml" rel="self"/>
   <link href="http://Derikulous.github.io/"/>
-  <updated>2013-11-16T14:44:50-08:00</updated>
+  <updated>2013-11-17T10:23:24-08:00</updated>
   <id>http://Derikulous.github.io/</id>
   <author>
     <name><![CDATA[Derik Strattan]]></name>
@@ -15,10 +15,10 @@
   
   <entry>
     <title type="html"><![CDATA[Installing Twitter Bootstrap]]></title>
-    <link href="http://Derikulous.github.io/blog/2013/11/03/installing-twitter-bootstrap/"/>
+    <link href="http://Derikulous.github.ioyear/11/03/installing-twitter-bootstrap/"/>
     <updated>2013-11-03T12:34:00-08:00</updated>
-    <id>http://Derikulous.github.io/blog/2013/11/03/installing-twitter-bootstrap</id>
-    <content type="html"><![CDATA[<h1>Mission: Install and use Twitter Bootstrap with Ruby on Rail</h1>
+    <id>http://Derikulous.github.ioyear/11/03/installing-twitter-bootstrap</id>
+    <content type="html"><![CDATA[<h1>Mission: Install and use Twitter Bootstrap with Ruby on Rails</h1>
 
 <h2><strong>Boss</strong>: Twitter Bootstrap</h2>
 
