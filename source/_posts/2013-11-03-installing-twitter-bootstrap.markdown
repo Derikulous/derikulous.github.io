@@ -38,7 +38,7 @@ In **assets/javascripts/**, make sure the file looks **EXACTLY** like this:
 ## **Modifying Bootstrap**
 Now that Twitter Bootstrap has been installed, we can customize the pages by calling in special classes provided by Bootstrap. What do I mean by *special classes*? This is where the **[documentation](http://getbootstrap.com/css/)** becomes important. Here is where I must stress the importance of following the documentation examples, so that you can easily learn and manifest the Twitter Bootstrap functionality.
 
-## Examples
+### Examples
 As of this post, I have been using Twitter Bootstrap for two months. In this short time, I have used the following functionality the most:<br>
 **Jumbotron<br>**
 **Grid System<br>**
@@ -69,7 +69,7 @@ This is arguably the most important component of Twitter Bootstrap. This class s
 ```
 The grid system comes in large, medium, small, and extra-small variations.
 
-## Templates
+## **Templates**
 Thanks to Twitter Bootstrap's popularity amongst web developers and designers, a number of free and paid-for templates exist for Twitter Bootstrap v2.3.2 and v3.0. These are a few of my favorite sites: <br>
 **FREE:**<br>
 [Bootswatch](http://bootswatch.com/)<br>
@@ -79,5 +79,5 @@ Thanks to Twitter Bootstrap's popularity amongst web developers and designers, a
 In fact, it's easy to implement themes from **Bootswatch** by specifying in your ```application.css.scss``` file, ```@import "bootstrap/Flatly"```. This will import the **[Flatly](http://bootswatch.com/flatly/)** theme from Bootswatch in your project.<br>
 I suggest diving deeper into all the benefits that Twitter Bootstrap provides. Try out **[Font-Awesome](http://fontawesome.io/)** and **[Glyphicons](http://getbootstrap.com/components/#glyphicons)**
 
-## Links
+## **Links**
 If you like what you've seen so far, try your hand at implementing templates by following **[this](https://speakerdeck.com/derikulous/picasso-pirate)** tutorial I created.
