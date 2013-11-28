@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby on Rails | Derik Strattan's Blog]]></title>
   <link href="http://Derikulous.github.io/blog/categories/ruby-on-rails/atom.xml" rel="self"/>
   <link href="http://Derikulous.github.io/"/>
-  <updated>2013-11-26T06:26:55-08:00</updated>
+  <updated>2013-11-27T17:19:40-08:00</updated>
   <id>http://Derikulous.github.io/</id>
   <author>
     <name><![CDATA[Derik Strattan]]></name>
@@ -125,36 +125,30 @@ Run <code>bundle</code>.
 <br>
 In your project folder, go to: <code>config/application.rb</code> and add the following:
 <br>
-``` ruby config/application.rb
+<code>ruby config/application.rb
 module Portfolio
   class Application &lt; Rails::Application
-  # &hellip;</p>
-
-<pre><code>config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
-allow do
-  origins '*'
-  resource '*',
-  headers: :any,
-  methods: [:get, :options]
+  # ...
+    config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
+    allow do
+      origins '*'
+      resource '*',
+      headers: :any,
+      methods: [:get, :options]
+    end
+  end
+  #...
+    config.assets.paths &lt;&lt; Rails.root.join("app", "assets")
+    config.assets.precompile += %w( .svg .eot .woff .ttf )
+    config.assets.header_rules = {
+      :global =&gt; {'Cache-Control' =&gt; 'public, max-age=31536000'},
+      :fonts  =&gt; {'Access-Control-Allow-Origin' =&gt; '*'}
+    }
+  end
 end
-</code></pre>
-
-<p>  end
-  #&hellip;</p>
-
-<pre><code>config.assets.paths &lt;&lt; Rails.root.join("app", "assets")
-config.assets.precompile += %w( .svg .eot .woff .ttf )
-config.assets.header_rules = {
-  :global =&gt; {'Cache-Control' =&gt; 'public, max-age=31536000'},
-  :fonts  =&gt; {'Access-Control-Allow-Origin' =&gt; '*'}
-}
-</code></pre>
-
-<p>  end
-end
-<code>
-&lt;br&gt;
-The first part of this configuration puts the CORS gem at the top of your stack. Confirm this by running</code> rake middleware <code>in your terminal. Any header is now able to be retrieved via the</code> get <code>method. The second part precompiles the FontAwesome assets by specifically looking for their file extension. It also allows font control via the</code> header_rules ```.</p>
+</code>
+<br>
+The first part of this configuration puts the CORS gem at the top of your stack. Confirm this by running <code>rake middleware</code> in your terminal. Any header is now able to be retrieved via the <code>get</code> method. The second part precompiles the FontAwesome assets by specifically looking for their file extension. It also allows font control via the <code>header_rules</code>.</p>
 
 <h2>Push to Heroku</h2>
 
