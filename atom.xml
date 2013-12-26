@@ -1,96 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
 
-<!DOCTYPE HTML>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>Derik Strattan's Blog</title>
-	<meta name="author" content="Derik Strattan">
-
-	
-	<meta name="description" content="Merry Christmas and happy holidays. Lately, I have been digging deeper to understand core Ruby principles away from web development. One of the &hellip;">
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-	<link href="/atom.xml" rel="alternate" title="Derik Strattan's Blog" type="application/atom+xml">
-	<link rel="canonical" href="">
-	<link href="/favicon.png" rel="shortcut icon">
-	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	
-</head>
-
-
-<body>
-	<header id="header" class="inner"><h1><a href="/">Derik Strattan's Blog</a></h1>
-<nav id="main-nav"><ul class="main">
-	<li><a href="/">Blog</a></li>
-	<li><a href="/blog/archives">Archives</a></li>
-</ul>
-</nav>
-<nav id="mobile-nav">
-	<div class="alignleft menu">
-		<a class="button">Menu</a>
-		<div class="container"><ul class="main">
-	<li><a href="/">Blog</a></li>
-	<li><a href="/blog/archives">Archives</a></li>
-</ul>
-</div>
-	</div>
-	<div class="alignright search">
-		<a class="button"></a>
-		<div class="container">
-			<form action="http://google.com/search" method="get">
-				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:Derikulous.github.io">
-			</form>
-		</div>
-	</div>
-</nav>
-<nav id="sub-nav" class="alignright">
-	<div class="social">
-		
-		
-		
-		<a class="twitter" href="http://twitter.com/Derikulous" title="Twitter">Twitter</a>
-		
-		
-		<a class="github" href="https://github.com/Derikulous" title="GitHub">GitHub</a>
-		
+  <title><![CDATA[Derik Strattan's Blog]]></title>
+  <link href="http://Derikulous.github.io/atom.xml" rel="self"/>
+  <link href="http://Derikulous.github.io/"/>
+  <updated>2013-12-25T22:49:16-08:00</updated>
+  <id>http://Derikulous.github.io/</id>
+  <author>
+    <name><![CDATA[Derik Strattan]]></name>
     
-		
-		
-		<a class="linkedin" href="http://www.linkedin.com/in/derikstrattan">LinkedIn</a>
-		
-		
-		
-		
-		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
-		
-    
-	</div>
-	<form class="search" action="http://google.com/search" method="get">
-		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:Derikulous.github.io">
-	</form>
-</nav>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
 
-</header>
-	
-		
-	
-	<div id="content" class="inner">
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="year/12/25/splicing-arrays/">
-		
-			Splicing Arrays</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTyxXhXqKTH4NUHw7xq9TYKJ_pSt859FONRpsndwnub4fFW-7Cj" title="&#34;Ghost in the Shell&#34;" alt="&#34;Ghost in the Shell&#34;"></p>
+  
+  <entry>
+    <title type="html"><![CDATA[Splicing arrays]]></title>
+    <link href="http://Derikulous.github.ioyear/12/25/splicing-arrays/"/>
+    <updated>2013-12-25T19:25:00-08:00</updated>
+    <id>http://Derikulous.github.ioyear/12/25/splicing-arrays</id>
+    <content type="html"><![CDATA[<p><img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTyxXhXqKTH4NUHw7xq9TYKJ_pSt859FONRpsndwnub4fFW-7Cj" title="&#34;Ghost in the Shell&#34;" alt="&#34;Ghost in the Shell&#34;"></p>
 
 <p>Merry Christmas and happy holidays. Lately, I have been digging deeper to understand core Ruby principles away from web development. One of the tools that I am using are are the  <a href="http://rubykoans.com/">Ruby Koans</a> &ndash; a set of fun, challenging problems that build on each other as your progress through levels. As such, solving these problems is a great way to learn about Ruby syntax, and under-the-hood Rubyisms.<br></p>
 
@@ -190,47 +118,15 @@ For exampl:</p>
 When an array is spliced, as in <code>array[4,0]</code>, the splice does not identify the elements themselves, but places <strong>BETWEEN</strong> the elements. This is a key distinction from <code>array[4]</code>; here, Ruby is pointing at index 4. This would result in nil. Try it for yourself!</p>
 
 <p><strong>Simply put: slicing and indexing are different operations, and as such, include different operations, and shouldn&rsquo;t be directly compared.</strong></p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
+]]></content>
+  </entry>
   
-
-
-<time datetime="2013-12-25T19:25:00-08:00" pubdate data-updated="true">Dec 25<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/splicing/'>Splicing</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="year/11/16/how-to-fontawesome/">
-		
-			How to Display FontAwesome in Firefox Using Rails and CloudFront</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="http://25.media.tumblr.com/8f8d4d311eeca74a0496233c087dbbae/tumblr_mw6av9Opmb1rbnw5do2_500.gif" title="&#34;5 cm per second&#34;" alt="&#34;5 cm per second&#34;"></p>
+  <entry>
+    <title type="html"><![CDATA[How to display FontAwesome in Firefox using Rails and CloudFront]]></title>
+    <link href="http://Derikulous.github.ioyear/11/16/how-to-fontawesome/"/>
+    <updated>2013-11-16T16:33:00-08:00</updated>
+    <id>http://Derikulous.github.ioyear/11/16/how-to-fontawesome</id>
+    <content type="html"><![CDATA[<p><img src="http://25.media.tumblr.com/8f8d4d311eeca74a0496233c087dbbae/tumblr_mw6av9Opmb1rbnw5do2_500.gif" title="&#34;5 cm per second&#34;" alt="&#34;5 cm per second&#34;"></p>
 
 <h3> Winter is almost upon us; the perfect time for staying indoors and coding!</h3>
 
@@ -401,47 +297,15 @@ You are now ready to push everything up to Heroku. Don&rsquo;t forget to manuall
 
 <p><h3> What&rsquo;s next?</h3>
   In the next blog, I will explain how I moved this blog over from <a href="https://www.heroku.com/">Heroku</a> to <a href="http://pages.github.com/">GitHub pages</a>. If this post helped you, feel free to leave a comment. Thanks and good luck coding!</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
+]]></content>
+  </entry>
   
-
-
-<time datetime="2013-11-16T16:33:00-08:00" pubdate data-updated="true">Nov 16<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/cloudfront/'>CloudFront</a>, <a class='category' href='/blog/categories/firefox/'>Firefox</a>, <a class='category' href='/blog/categories/fontawesome/'>FontAwesome</a>, <a class='category' href='/blog/categories/ruby-on-rails/'>Ruby on Rails</a>, <a class='category' href='/blog/categories/troubleshooting/'>troubleshooting</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="year/11/03/installing-twitter-bootstrap/">
-		
-			Installing Twitter Bootstrap</a>
-	</h2>
-	<div class="entry-content">
-		<h1>Mission: Install and use Twitter Bootstrap with Ruby on Rails</h1>
+  <entry>
+    <title type="html"><![CDATA[Installing Twitter Bootstrap]]></title>
+    <link href="http://Derikulous.github.ioyear/11/03/installing-twitter-bootstrap/"/>
+    <updated>2013-11-03T12:34:00-08:00</updated>
+    <id>http://Derikulous.github.ioyear/11/03/installing-twitter-bootstrap</id>
+    <content type="html"><![CDATA[<h1>Mission: Install and use Twitter Bootstrap with Ruby on Rails</h1>
 
 <h2><strong>Boss</strong>: Twitter Bootstrap</h2>
 
@@ -545,47 +409,15 @@ I suggest diving deeper into all the benefits that Twitter Bootstrap provides. T
 <h2><strong>Links</strong></h2>
 
 <p>If you like what you&rsquo;ve seen so far, try your hand at implementing templates by following <strong><a href="https://speakerdeck.com/derikulous/picasso-pirate">this</a></strong> tutorial I created.</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
+]]></content>
+  </entry>
   
-
-
-<time datetime="2013-11-03T12:34:00-08:00" pubdate data-updated="true">Nov 3<span>rd</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/twitter-bootstrap/'>Twitter Bootstrap</a>, <a class='category' href='/blog/categories/front-end/'>front-end</a>, <a class='category' href='/blog/categories/installation/'>installation</a>, <a class='category' href='/blog/categories/troubleshooting/'>troubleshooting</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="year/10/28/hello-world/">
-		
-			Hello, World</a>
-	</h2>
-	<div class="entry-content">
-		<p>Hello, world.</p>
+  <entry>
+    <title type="html"><![CDATA[Hello, world]]></title>
+    <link href="http://Derikulous.github.ioyear/10/28/hello-world/"/>
+    <updated>2013-10-28T19:51:00-07:00</updated>
+    <id>http://Derikulous.github.ioyear/10/28/hello-world</id>
+    <content type="html"><![CDATA[<p>Hello, world.</p>
 
 <p>Octopress goodness. In true coding fashion, I had a bit of trouble creating my first post thanks to an error with Rake.</p>
 
@@ -593,71 +425,7 @@ I suggest diving deeper into all the benefits that Twitter Bootstrap provides. T
 
 <p>After a bit of sleuthing around, I tried a few scenarios to fix this error, namely <a href="http://www.flowerchild.org.uk/archive/2013/07/19/octopress-rake-errors-you-have-already-activated-x-but-your-gemfile-requires-y.html">here</a>. However, this work around required that I <strong>USE</strong> rake. /facepalm <br>
 There&rsquo;s a better fix! In the gemfile, I deleted &lsquo;~> 0.9&rsquo; from the <strong>Rake</strong> gem. Then I went into the gemfile.lock file, searched for Rake, and changed the number 0.9.22 to <strong>10.1.0</strong>. Voila, rake now works!</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
+]]></content>
+  </entry>
   
-
-
-<time datetime="2013-10-28T19:51:00-07:00" pubdate data-updated="true">Oct 28<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/hello/'>Hello</a>, <a class='category' href='/blog/categories/rake-error/'>Rake error</a>
-
-
-</div>
-	
-</div>
-</article>
-
-<nav id="pagenavi">
-    
-    
-    <div class="center"><a href="/blog/archives">Blog Archives</a></div>
-</nav></div>
-	<footer id="footer" class="inner">Copyright &copy; 2013
-
-    Derik Strattan
-
-</footer>
-	<script src="/javascripts/slash.js"></script>
-<script src="/javascripts/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-	$('.fancybox').fancybox();
-})(jQuery);
-</script> <!-- Delete or comment this line to disable Fancybox -->
-
-
-
-
-	<script type="text/javascript">
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-45794478-1']);
-		_gaq.push(['_trackPageview']);
-
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-	</script>
-
-
-
-</body>
-</html>
+</feed>
