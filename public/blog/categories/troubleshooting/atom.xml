@@ -4,7 +4,7 @@
   <title><![CDATA[Category: troubleshooting | Derik Strattan's Blog]]></title>
   <link href="http://Derikulous.github.io/blog/categories/troubleshooting/atom.xml" rel="self"/>
   <link href="http://Derikulous.github.io/"/>
-  <updated>2013-11-26T06:26:55-08:00</updated>
+  <updated>2013-12-25T21:34:03-08:00</updated>
   <id>http://Derikulous.github.io/</id>
   <author>
     <name><![CDATA[Derik Strattan]]></name>
@@ -18,7 +18,7 @@
     <link href="http://Derikulous.github.ioyear/11/16/how-to-fontawesome/"/>
     <updated>2013-11-16T16:33:00-08:00</updated>
     <id>http://Derikulous.github.ioyear/11/16/how-to-fontawesome</id>
-    <content type="html"><![CDATA[<p><img class="<a" src="href="http://25.media.tumblr.com/8f8d4d311eeca74a0496233c087dbbae/tumblr_mw6av9Opmb1rbnw5do2_500.gif">http://25.media.tumblr.com/8f8d4d311eeca74a0496233c087dbbae/tumblr_mw6av9Opmb1rbnw5do2_500.gif</a>" title="&ldquo;5 cm per second&rdquo;" ></p>
+    <content type="html"><![CDATA[<p>{% img <a href="http://25.media.tumblr.com/8f8d4d311eeca74a0496233c087dbbae/tumblr_mw6av9Opmb1rbnw5do2_500.gif">http://25.media.tumblr.com/8f8d4d311eeca74a0496233c087dbbae/tumblr_mw6av9Opmb1rbnw5do2_500.gif</a> &ldquo;5 cm per second&rdquo; %}</p>
 
 <h3> Winter is almost upon us; the perfect time for staying indoors and coding!</h3>
 
@@ -66,7 +66,7 @@
 <h1>Configuring CloudFront</h1>
 
 <p>
-  <img src="https://www.llamaproducts.com/assets/product_pics/decal_meat_n_taters.gif"> <br> Ahhh, we have finally arrived at the meat and 'taters of this article. Let's set up CloudFront (if you have questions, refer to this <a href="https://devcenter.heroku.com/articles/using-amazon-cloudfront-cdn-with-rails#testing"><i>post</i></a> on Heroku. But first, what <b>IS</b> CloudFront? Many developers use Amazon S3 (simple storage service) to store static assets (e.g. images, javascript, CSS). It is also sometimes used to <b>serve</b> those assets, but this is not recommended because the S3 was not designed to serve files when your website is under heavy traffic. CloudFront is referred to as a Content Delivery Network (CDN), and acts to serve those assets that you stored on S3.
+  {% img https://www.llamaproducts.com/assets/product_pics/decal_meat_n_taters.gif %} <br> Ahhh, we have finally arrived at the meat and 'taters of this article. Let's set up CloudFront (if you have questions, refer to this <a href="https://devcenter.heroku.com/articles/using-amazon-cloudfront-cdn-with-rails#testing"><i>post</i></a> on Heroku. But first, what <b>IS</b> CloudFront? Many developers use Amazon S3 (simple storage service) to store static assets (e.g. images, javascript, CSS). It is also sometimes used to <b>serve</b> those assets, but this is not recommended because the S3 was not designed to serve files when your website is under heavy traffic. CloudFront is referred to as a Content Delivery Network (CDN), and acts to serve those assets that you stored on S3.
 </p>
 
 
@@ -75,7 +75,7 @@
 <p>
   <ol>
     <li>Make an <a href="http://aws.amazon.com">AWS account</a>.</li>
-    <li>Login to your account, and go to <a href="https://console.aws.amazon.com/cloudfront/home">CloudFront control panel</a>. Click 'Create distribution', and when prompted for the delivery method, select 'Web'. For now, use defaults. NOTE: If you wish to use CNAME, you must enter your domain under 'Origin Domain Name'. </li><br> <img src="https://s3.amazonaws.com/heroku.devcenter/heroku_assets/images/224-original.jpg">
+    <li>Login to your account, and go to <a href="https://console.aws.amazon.com/cloudfront/home">CloudFront control panel</a>. Click 'Create distribution', and when prompted for the delivery method, select 'Web'. For now, use defaults. NOTE: If you wish to use CNAME, you must enter your domain under 'Origin Domain Name'. </li><br> {% img https://s3.amazonaws.com/heroku.devcenter/heroku_assets/images/224-original.jpg %}
   </ol>
 </p>
 
@@ -101,7 +101,7 @@ fontawesome-webfont-e742c0f297e307a74bdf4ca3c19073a2.eot
 
 <p>Back in the CloudFront Panel, choose the tab <strong>Invalidations</strong>. Click <button>Create Invalidation</button>.
 <br>
-<img class="<a" src="href="http://user-image.logdown.io/user/1/blog/317/post/52439/eWU50lLhRqWSbj89efo7_invalid1.png">http://user-image.logdown.io/user/1/blog/317/post/52439/eWU50lLhRqWSbj89efo7_invalid1.png</a>" title="&ldquo;blog.xdite&rdquo;" >
+{% img <a href="http://user-image.logdown.io/user/1/blog/317/post/52439/eWU50lLhRqWSbj89efo7_invalid1.png">http://user-image.logdown.io/user/1/blog/317/post/52439/eWU50lLhRqWSbj89efo7_invalid1.png</a> &ldquo;blog.xdite&rdquo; %}
 <br>
 Paste in the above assets like this:
 <code>ruby
@@ -156,7 +156,7 @@ end
 &lt;br&gt;
 The first part of this configuration puts the CORS gem at the top of your stack. Confirm this by running</code> rake middleware <code>in your terminal. Any header is now able to be retrieved via the</code> get <code>method. The second part precompiles the FontAwesome assets by specifically looking for their file extension. It also allows font control via the</code> header_rules ```.</p>
 
-<h2>Push to Heroku</h2>
+<h2><strong>Push to Heroku</strong></h2>
 
 <p><p>
 You are now ready to push everything up to Heroku. Don&rsquo;t forget to manually precompile assets, if necessary.
@@ -212,7 +212,7 @@ In <strong>assets/javascripts/</strong>, make sure the file looks <strong>EXACTL
 
 <p>Now that Twitter Bootstrap has been installed, we can customize the pages by calling in special classes provided by Bootstrap. What do I mean by <em>special classes</em>? This is where the <strong><a href="http://getbootstrap.com/css/">documentation</a></strong> becomes important. Here is where I must stress the importance of following the documentation examples, so that you can easily learn and manifest the Twitter Bootstrap functionality.</p>
 
-<h2>Examples</h2>
+<h3>Examples</h3>
 
 <p>As of this post, I have been using Twitter Bootstrap for two months. In this short time, I have used the following functionality the most:<br>
 <strong>Jumbotron<br></strong>
@@ -253,7 +253,7 @@ That jumbotron class is all that you need to specify to add this special functio
 <p>```
 The grid system comes in large, medium, small, and extra-small variations.</p>
 
-<h2>Templates</h2>
+<h2><strong>Templates</strong></h2>
 
 <p>Thanks to Twitter Bootstrap&rsquo;s popularity amongst web developers and designers, a number of free and paid-for templates exist for Twitter Bootstrap v2.3.2 and v3.0. These are a few of my favorite sites: <br>
 <strong>FREE:</strong><br>
@@ -264,7 +264,7 @@ The grid system comes in large, medium, small, and extra-small variations.</p>
 In fact, it&rsquo;s easy to implement themes from <strong>Bootswatch</strong> by specifying in your <code>application.css.scss</code> file, <code>@import "bootstrap/Flatly"</code>. This will import the <strong><a href="http://bootswatch.com/flatly/">Flatly</a></strong> theme from Bootswatch in your project.<br>
 I suggest diving deeper into all the benefits that Twitter Bootstrap provides. Try out <strong><a href="http://fontawesome.io/">Font-Awesome</a></strong> and <strong><a href="http://getbootstrap.com/components/#glyphicons">Glyphicons</a></strong></p>
 
-<h2>Links</h2>
+<h2><strong>Links</strong></h2>
 
 <p>If you like what you&rsquo;ve seen so far, try your hand at implementing templates by following <strong><a href="https://speakerdeck.com/derikulous/picasso-pirate">this</a></strong> tutorial I created.</p>
 ]]></content>

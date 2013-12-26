@@ -4,7 +4,7 @@
   <title><![CDATA[Derik Strattan's Blog]]></title>
   <link href="http://Derikulous.github.io/atom.xml" rel="self"/>
   <link href="http://Derikulous.github.io/"/>
-  <updated>2013-11-26T06:26:55-08:00</updated>
+  <updated>2013-12-25T21:34:02-08:00</updated>
   <id>http://Derikulous.github.io/</id>
   <author>
     <name><![CDATA[Derik Strattan]]></name>
@@ -12,6 +12,114 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Splicing arrays]]></title>
+    <link href="http://Derikulous.github.ioyear/12/25/splicing-arrays/"/>
+    <updated>2013-12-25T19:25:00-08:00</updated>
+    <id>http://Derikulous.github.ioyear/12/25/splicing-arrays</id>
+    <content type="html"><![CDATA[<p><img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTyxXhXqKTH4NUHw7xq9TYKJ_pSt859FONRpsndwnub4fFW-7Cj" title="&#34;Ghost in the Shell&#34;" alt="&#34;Ghost in the Shell&#34;"></p>
+
+<p>Merry Christmas and happy holidays. Lately, I have been digging deeper to understand core Ruby principles away from web development. One of the tools that I am using are are the  <a href="http://rubykoans.com/">Ruby Koans</a> &ndash; a set of fun, challenging problems that build on each other as your progress through levels. As such, solving these problems is a great way to learn about Ruby syntax, and under-the-hood Rubyisms.<br></p>
+
+<p>I was working through a section in the Koans called &ldquo;about_arrays&rdquo;, specifically test_slicing_arays.</p>
+
+<p>For example:</p>
+
+<figure class='code'><figcaption><span>about_arrays.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">test_slicing_arrays</span>
+</span><span class='line'>  <span class="n">array</span> <span class="o">=</span> <span class="o">[</span><span class="ss">:peanut</span><span class="p">,</span> <span class="ss">:butter</span><span class="p">,</span> <span class="ss">:and</span><span class="p">,</span> <span class="ss">:jelly</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="n">__</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="n">__</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="n">__</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="n">__</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">20</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="n">__</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="n">__</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">100</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="n">__</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="o">]</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<br>
+
+
+<p>In this example, an array is defined and includes four symbols; <i>peanut</i>, <i>butter</i>, <i>and</i>, <i>jelly</i>. There are a number of assertions to be made. Where the underscore exists, the user submits their answer.
+For exampl:</p>
+
+<figure class='code'><figcaption><span>about_arrays.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">test_slicing_arrays</span>
+</span><span class='line'>  <span class="n">array</span> <span class="o">=</span> <span class="o">[</span><span class="ss">:peanut</span><span class="p">,</span> <span class="ss">:butter</span><span class="p">,</span> <span class="ss">:and</span><span class="p">,</span> <span class="ss">:jelly</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="o">[</span><span class="ss">:peanut</span><span class="o">]</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="o">[</span><span class="ss">:peanut</span><span class="p">,</span> <span class="ss">:butter</span><span class="o">]</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="o">[</span><span class="ss">:and</span><span class="p">,</span> <span class="ss">:jelly</span><span class="o">]</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="o">[</span><span class="ss">:and</span><span class="p">,</span> <span class="ss">:jelly</span><span class="o">]</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">20</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="o">[]</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="o">[]</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">100</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="kp">nil</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="o">]</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<br>
+
+
+<p>The first argument accepts the <b>&ldquo;lower bound&rdquo;</b>, while the second argument is the <b>&ldquo;range of elements&rdquo;</b> that you want to pull out of the array, beginning with the <b>&ldquo;lower bound&rdquo;</b>. So going through the list, I understood up until the last line: <code>ruby assert_equal nil, array[5,0]</code>.</p>
+
+<p>So, really, I didn&rsquo;t understand anything. After a lot of stackoverflow searching, I came across this <a href="http://stackoverflow.com/questions/3568222/array-slicing-in-ruby-looking-for-explanation-for-illogical-behaviour-taken-fr?rq=1">post</a>.</p>
+
+<p>What is exactly happening here?</p>
+
+<p>In my head, how I thought indices and arrays worked was this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="ss">:peanut</span>   <span class="ss">:butter</span>   <span class="ss">:and</span>   <span class="ss">:jelly</span>
+</span><span class='line'>     <span class="mi">0</span>         <span class="mi">1</span>        <span class="mi">2</span>       <span class="mi">3</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Following from this logic, then <code>[], array [4,0]</code> also wouldn&rsquo;t make sense, yet that is the solution. <em>Swoon</em></p>
+
+<p>According to the way splicing works, the indices are defined more like the following:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="ss">:peanut</span>   <span class="ss">:butter</span>   <span class="ss">:and</span>   <span class="ss">:jelly</span>
+</span><span class='line'><span class="mi">0</span>         <span class="mi">1</span>         <span class="mi">2</span>      <span class="mi">3</span>        <span class="mi">4</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<br>
+
+
+<p>It&rsquo;s now worth noting that finding the range of an array is different than finding index.
+When an array is spliced, as in <code>array[4,0]</code>, the splice does not identify the elements themselves, but places <strong>BETWEEN</strong> the elements. This is a key distinction from <code>array[4]</code>; here, Ruby is pointing at index 4. This would result in nil. Try it for yourself!</p>
+
+<p><strong>Simply put: slicing and indexing are different operations, and as such, include different operations, and shouldn&rsquo;t be directly compared.</strong></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to display FontAwesome in Firefox using Rails and CloudFront]]></title>
@@ -175,7 +283,7 @@ In your project folder, go to: <code>config/application.rb</code> and add the fo
 <br>
 The first part of this configuration puts the CORS gem at the top of your stack. Confirm this by running <code>rake middleware</code> in your terminal. Any header is now able to be retrieved via the <code>get</code> method. The second part precompiles the FontAwesome assets by specifically looking for their file extension. It also allows font control via the <code>header_rules</code>.</p>
 
-<h2>Push to Heroku</h2>
+<h2><strong>Push to Heroku</strong></h2>
 
 <p><p>
 You are now ready to push everything up to Heroku. Don&rsquo;t forget to manually precompile assets, if necessary.
@@ -240,7 +348,7 @@ In <strong>assets/javascripts/</strong>, make sure the file looks <strong>EXACTL
 
 <p>Now that Twitter Bootstrap has been installed, we can customize the pages by calling in special classes provided by Bootstrap. What do I mean by <em>special classes</em>? This is where the <strong><a href="http://getbootstrap.com/css/">documentation</a></strong> becomes important. Here is where I must stress the importance of following the documentation examples, so that you can easily learn and manifest the Twitter Bootstrap functionality.</p>
 
-<h2>Examples</h2>
+<h3>Examples</h3>
 
 <p>As of this post, I have been using Twitter Bootstrap for two months. In this short time, I have used the following functionality the most:<br>
 <strong>Jumbotron<br></strong>
@@ -287,7 +395,7 @@ In <strong>assets/javascripts/</strong>, make sure the file looks <strong>EXACTL
 
 <p>The grid system comes in large, medium, small, and extra-small variations.</p>
 
-<h2>Templates</h2>
+<h2><strong>Templates</strong></h2>
 
 <p>Thanks to Twitter Bootstrap&rsquo;s popularity amongst web developers and designers, a number of free and paid-for templates exist for Twitter Bootstrap v2.3.2 and v3.0. These are a few of my favorite sites: <br>
 <strong>FREE:</strong><br>
@@ -298,7 +406,7 @@ In <strong>assets/javascripts/</strong>, make sure the file looks <strong>EXACTL
 In fact, it&rsquo;s easy to implement themes from <strong>Bootswatch</strong> by specifying in your <code>application.css.scss</code> file, <code>@import "bootstrap/Flatly"</code>. This will import the <strong><a href="http://bootswatch.com/flatly/">Flatly</a></strong> theme from Bootswatch in your project.<br>
 I suggest diving deeper into all the benefits that Twitter Bootstrap provides. Try out <strong><a href="http://fontawesome.io/">Font-Awesome</a></strong> and <strong><a href="http://getbootstrap.com/components/#glyphicons">Glyphicons</a></strong></p>
 
-<h2>Links</h2>
+<h2><strong>Links</strong></h2>
 
 <p>If you like what you&rsquo;ve seen so far, try your hand at implementing templates by following <strong><a href="https://speakerdeck.com/derikulous/picasso-pirate">this</a></strong> tutorial I created.</p>
 ]]></content>
@@ -309,13 +417,14 @@ I suggest diving deeper into all the benefits that Twitter Bootstrap provides. T
     <link href="http://Derikulous.github.ioyear/10/28/hello-world/"/>
     <updated>2013-10-28T19:51:00-07:00</updated>
     <id>http://Derikulous.github.ioyear/10/28/hello-world</id>
-    <content type="html"><![CDATA[<h1>Hello, world.</h1>
+    <content type="html"><![CDATA[<p>Hello, world.</p>
 
-<p>This post is intended so that I can get a feel for Octopress. In true coding fashion, I had a bit of trouble creating my first post thanks to an error with Rake.</p>
+<p>Octopress goodness. In true coding fashion, I had a bit of trouble creating my first post thanks to an error with Rake.</p>
 
 <p>Specifically, when I typed the command $ rake new_post[&ldquo;Hello world&rdquo;], I was greeted with the error: <strong>You have already activated rake 10.1.0, but your Gemfile requires rake 0.9.2.2. Using bundle exec may solve this.</strong></p>
 
-<p>After a bit of sleuthing around, I tried a few scenarios to fix this error, namely <a href="http://www.flowerchild.org.uk/archive/2013/07/19/octopress-rake-errors-you-have-already-activated-x-but-your-gemfile-requires-y.html">here</a>. However, this work-around required that I <em>USE</em> rake. There&rsquo;s a better fix! In the gemfile, I deleted &lsquo;~> 0.9&rsquo; from the <strong>Rake</strong> gem. Then I went into the gemfile.lock file, searched for Rake, and changed the number 0.9.22 to <strong>10.1.0</strong>. Voila, rake now works!</p>
+<p>After a bit of sleuthing around, I tried a few scenarios to fix this error, namely <a href="http://www.flowerchild.org.uk/archive/2013/07/19/octopress-rake-errors-you-have-already-activated-x-but-your-gemfile-requires-y.html">here</a>. However, this work around required that I <strong>USE</strong> rake. /facepalm <br>
+There&rsquo;s a better fix! In the gemfile, I deleted &lsquo;~> 0.9&rsquo; from the <strong>Rake</strong> gem. Then I went into the gemfile.lock file, searched for Rake, and changed the number 0.9.22 to <strong>10.1.0</strong>. Voila, rake now works!</p>
 ]]></content>
   </entry>
   

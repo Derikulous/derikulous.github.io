@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Twitter Bootstrap | Derik Strattan's Blog]]></title>
   <link href="http://Derikulous.github.io/blog/categories/twitter-bootstrap/atom.xml" rel="self"/>
   <link href="http://Derikulous.github.io/"/>
-  <updated>2013-11-26T06:26:55-08:00</updated>
+  <updated>2013-12-25T21:34:03-08:00</updated>
   <id>http://Derikulous.github.io/</id>
   <author>
     <name><![CDATA[Derik Strattan]]></name>
@@ -52,7 +52,7 @@ In <strong>assets/javascripts/</strong>, make sure the file looks <strong>EXACTL
 
 <p>Now that Twitter Bootstrap has been installed, we can customize the pages by calling in special classes provided by Bootstrap. What do I mean by <em>special classes</em>? This is where the <strong><a href="http://getbootstrap.com/css/">documentation</a></strong> becomes important. Here is where I must stress the importance of following the documentation examples, so that you can easily learn and manifest the Twitter Bootstrap functionality.</p>
 
-<h2>Examples</h2>
+<h3>Examples</h3>
 
 <p>As of this post, I have been using Twitter Bootstrap for two months. In this short time, I have used the following functionality the most:<br>
 <strong>Jumbotron<br></strong>
@@ -93,7 +93,7 @@ That jumbotron class is all that you need to specify to add this special functio
 <p>```
 The grid system comes in large, medium, small, and extra-small variations.</p>
 
-<h2>Templates</h2>
+<h2><strong>Templates</strong></h2>
 
 <p>Thanks to Twitter Bootstrap&rsquo;s popularity amongst web developers and designers, a number of free and paid-for templates exist for Twitter Bootstrap v2.3.2 and v3.0. These are a few of my favorite sites: <br>
 <strong>FREE:</strong><br>
@@ -104,7 +104,7 @@ The grid system comes in large, medium, small, and extra-small variations.</p>
 In fact, it&rsquo;s easy to implement themes from <strong>Bootswatch</strong> by specifying in your <code>application.css.scss</code> file, <code>@import "bootstrap/Flatly"</code>. This will import the <strong><a href="http://bootswatch.com/flatly/">Flatly</a></strong> theme from Bootswatch in your project.<br>
 I suggest diving deeper into all the benefits that Twitter Bootstrap provides. Try out <strong><a href="http://fontawesome.io/">Font-Awesome</a></strong> and <strong><a href="http://getbootstrap.com/components/#glyphicons">Glyphicons</a></strong></p>
 
-<h2>Links</h2>
+<h2><strong>Links</strong></h2>
 
 <p>If you like what you&rsquo;ve seen so far, try your hand at implementing templates by following <strong><a href="https://speakerdeck.com/derikulous/picasso-pirate">this</a></strong> tutorial I created.</p>
 ]]></content>

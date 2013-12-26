@@ -112,7 +112,7 @@ end
 ```
 <br>
 The first part of this configuration puts the CORS gem at the top of your stack. Confirm this by running ``` rake middleware ``` in your terminal. Any header is now able to be retrieved via the ``` get ``` method. The second part precompiles the FontAwesome assets by specifically looking for their file extension. It also allows font control via the ``` header_rules ```.
-## Push to Heroku
+## **Push to Heroku**
 <p>
 You are now ready to push everything up to Heroku. Don't forget to manually precompile assets, if necessary.
 </p>
