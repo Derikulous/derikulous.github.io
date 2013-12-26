@@ -4,15 +4,17 @@
   <title><![CDATA[Category: Twitter Bootstrap | Derik Strattan's Blog]]></title>
   <link href="http://Derikulous.github.io/blog/categories/twitter-bootstrap/atom.xml" rel="self"/>
   <link href="http://Derikulous.github.io/"/>
+
   <updated>2013-11-27T17:21:13-08:00</updated>
+
   <id>http://Derikulous.github.io/</id>
   <author>
     <name><![CDATA[Derik Strattan]]></name>
-    
+
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
+
   <entry>
     <title type="html"><![CDATA[Installing Twitter Bootstrap]]></title>
     <link href="http://Derikulous.github.ioyear/11/03/installing-twitter-bootstrap/"/>
@@ -34,11 +36,13 @@
 
 <p>For this tutorial, we will install Bootstrap with SASS. In your gemfile, include the following:</p>
 
+
 <pre><code class="ruby Gemfile https://github.com/thomas-mcdonald/bootstrap-sass Link">gem 'sass-rails', '&gt;= 3.2' # sass-rails needs to be higher than 3.2
 gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass'
 </code></pre>
 
 <p>Now run <code>bundle install</code> in the command line. This will install version 3.0.1 of Twitter Bootstrap.</p>
+
 
 <p>Open up your project, and within the folder <strong>assets/stylesheets/</strong>, rename <strong>application.css</strong> to <strong>application.css.scss</strong>. Now add <code>@import "bootstrap";</code> anywhere in the file.<br>
 In <strong>assets/javascripts/</strong>, make sure the file looks <strong>EXACTLY</strong> like this:
@@ -73,6 +77,7 @@ In <strong>assets/javascripts/</strong>, make sure the file looks <strong>EXACTL
 </div>
 
 
+
 <pre><code>That jumbotron class is all that you need to specify to add this special functionality in your stylesheet! You can also see that there's another class in this code **"btn btn-primary btn-lrg"**. I'll introduce this now.
 
 ### **[Buttons](http://getbootstrap.com/css/#buttons)**
@@ -81,6 +86,7 @@ This component, as you have probably guessed, adds great looking buttons into yo
 ### **[Grid System](http://getbootstrap.com/css/#grid)**
 This is arguably the most important component of Twitter Bootstrap. This class specification uses a 12 grid system, with responsive scale, to add size and location to DIV classes. I suggest following the link and reading more about this class. The class is called by the following command:
 </code></pre>
+
 
 <div class="row">
   <div class="col-md-1">This is a medium size, 1 grid column</div>
@@ -106,5 +112,5 @@ I suggest diving deeper into all the benefits that Twitter Bootstrap provides. T
 <p>If you like what you&rsquo;ve seen so far, try your hand at implementing templates by following <strong><a href="https://speakerdeck.com/derikulous/picasso-pirate">this</a></strong> tutorial I created.</p>
 ]]></content>
   </entry>
-  
+
 </feed>

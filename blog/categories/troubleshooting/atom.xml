@@ -4,15 +4,17 @@
   <title><![CDATA[Category: troubleshooting | Derik Strattan's Blog]]></title>
   <link href="http://Derikulous.github.io/blog/categories/troubleshooting/atom.xml" rel="self"/>
   <link href="http://Derikulous.github.io/"/>
+
   <updated>2013-11-27T17:21:13-08:00</updated>
+
   <id>http://Derikulous.github.io/</id>
   <author>
     <name><![CDATA[Derik Strattan]]></name>
-    
+
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
+
   <entry>
     <title type="html"><![CDATA[How to display FontAwesome in Firefox using Rails and CloudFront]]></title>
     <link href="http://Derikulous.github.ioyear/11/16/how-to-fontawesome/"/>
@@ -125,6 +127,7 @@ Run <code>bundle</code>.
 <br>
 In your project folder, go to: <code>config/application.rb</code> and add the following:
 <br>
+
 <code>ruby config/application.rb
 module Portfolio
   class Application &lt; Rails::Application
@@ -150,6 +153,7 @@ end
 <br>
 The first part of this configuration puts the CORS gem at the top of your stack. Confirm this by running <code>rake middleware</code> in your terminal. Any header is now able to be retrieved via the <code>get</code> method. The second part precompiles the FontAwesome assets by specifically looking for their file extension. It also allows font control via the <code>header_rules</code>.</p>
 
+
 <h2><strong>Push to Heroku</strong></h2>
 
 <p><p>
@@ -166,7 +170,7 @@ You are now ready to push everything up to Heroku. Don&rsquo;t forget to manuall
   In the next blog, I will explain how I moved this blog over from <a href="https://www.heroku.com/">Heroku</a> to <a href="http://pages.github.com/">GitHub pages</a>. If this post helped you, feel free to leave a comment. Thanks and good luck coding!</p>
 ]]></content>
   </entry>
-  
+
   <entry>
     <title type="html"><![CDATA[Installing Twitter Bootstrap]]></title>
     <link href="http://Derikulous.github.ioyear/11/03/installing-twitter-bootstrap/"/>
@@ -188,11 +192,13 @@ You are now ready to push everything up to Heroku. Don&rsquo;t forget to manuall
 
 <p>For this tutorial, we will install Bootstrap with SASS. In your gemfile, include the following:</p>
 
+
 <pre><code class="ruby Gemfile https://github.com/thomas-mcdonald/bootstrap-sass Link">gem 'sass-rails', '&gt;= 3.2' # sass-rails needs to be higher than 3.2
 gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass'
 </code></pre>
 
 <p>Now run <code>bundle install</code> in the command line. This will install version 3.0.1 of Twitter Bootstrap.</p>
+
 
 <p>Open up your project, and within the folder <strong>assets/stylesheets/</strong>, rename <strong>application.css</strong> to <strong>application.css.scss</strong>. Now add <code>@import "bootstrap";</code> anywhere in the file.<br>
 In <strong>assets/javascripts/</strong>, make sure the file looks <strong>EXACTLY</strong> like this:
@@ -227,6 +233,7 @@ In <strong>assets/javascripts/</strong>, make sure the file looks <strong>EXACTL
 </div>
 
 
+
 <pre><code>That jumbotron class is all that you need to specify to add this special functionality in your stylesheet! You can also see that there's another class in this code **"btn btn-primary btn-lrg"**. I'll introduce this now.
 
 ### **[Buttons](http://getbootstrap.com/css/#buttons)**
@@ -235,6 +242,7 @@ This component, as you have probably guessed, adds great looking buttons into yo
 ### **[Grid System](http://getbootstrap.com/css/#grid)**
 This is arguably the most important component of Twitter Bootstrap. This class specification uses a 12 grid system, with responsive scale, to add size and location to DIV classes. I suggest following the link and reading more about this class. The class is called by the following command:
 </code></pre>
+
 
 <div class="row">
   <div class="col-md-1">This is a medium size, 1 grid column</div>
@@ -260,5 +268,5 @@ I suggest diving deeper into all the benefits that Twitter Bootstrap provides. T
 <p>If you like what you&rsquo;ve seen so far, try your hand at implementing templates by following <strong><a href="https://speakerdeck.com/derikulous/picasso-pirate">this</a></strong> tutorial I created.</p>
 ]]></content>
   </entry>
-  
+
 </feed>

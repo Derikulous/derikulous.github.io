@@ -4,15 +4,17 @@
   <title><![CDATA[Category: Firefox | Derik Strattan's Blog]]></title>
   <link href="http://Derikulous.github.io/blog/categories/firefox/atom.xml" rel="self"/>
   <link href="http://Derikulous.github.io/"/>
+
   <updated>2013-11-27T17:21:13-08:00</updated>
+
   <id>http://Derikulous.github.io/</id>
   <author>
     <name><![CDATA[Derik Strattan]]></name>
-    
+
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
+
   <entry>
     <title type="html"><![CDATA[How to display FontAwesome in Firefox using Rails and CloudFront]]></title>
     <link href="http://Derikulous.github.ioyear/11/16/how-to-fontawesome/"/>
@@ -125,6 +127,7 @@ Run <code>bundle</code>.
 <br>
 In your project folder, go to: <code>config/application.rb</code> and add the following:
 <br>
+
 <code>ruby config/application.rb
 module Portfolio
   class Application &lt; Rails::Application
@@ -150,6 +153,7 @@ end
 <br>
 The first part of this configuration puts the CORS gem at the top of your stack. Confirm this by running <code>rake middleware</code> in your terminal. Any header is now able to be retrieved via the <code>get</code> method. The second part precompiles the FontAwesome assets by specifically looking for their file extension. It also allows font control via the <code>header_rules</code>.</p>
 
+
 <h2><strong>Push to Heroku</strong></h2>
 
 <p><p>
@@ -166,5 +170,5 @@ You are now ready to push everything up to Heroku. Don&rsquo;t forget to manuall
   In the next blog, I will explain how I moved this blog over from <a href="https://www.heroku.com/">Heroku</a> to <a href="http://pages.github.com/">GitHub pages</a>. If this post helped you, feel free to leave a comment. Thanks and good luck coding!</p>
 ]]></content>
   </entry>
-  
+
 </feed>

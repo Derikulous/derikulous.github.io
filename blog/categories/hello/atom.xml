@@ -4,15 +4,17 @@
   <title><![CDATA[Category: Hello | Derik Strattan's Blog]]></title>
   <link href="http://Derikulous.github.io/blog/categories/hello/atom.xml" rel="self"/>
   <link href="http://Derikulous.github.io/"/>
+
   <updated>2013-11-27T17:21:13-08:00</updated>
+
   <id>http://Derikulous.github.io/</id>
   <author>
     <name><![CDATA[Derik Strattan]]></name>
-    
+
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
+
   <entry>
     <title type="html"><![CDATA[Hello, world]]></title>
     <link href="http://Derikulous.github.ioyear/10/28/hello-world/"/>
@@ -28,5 +30,5 @@
 There&rsquo;s a better fix! In the gemfile, I deleted &lsquo;~> 0.9&rsquo; from the <strong>Rake</strong> gem. Then I went into the gemfile.lock file, searched for Rake, and changed the number 0.9.22 to <strong>10.1.0</strong>. Voila, rake now works!</p>
 ]]></content>
   </entry>
-  
+
 </feed>

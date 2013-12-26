@@ -4,16 +4,128 @@
   <title><![CDATA[Derik Strattan's Blog]]></title>
   <link href="http://Derikulous.github.io/atom.xml" rel="self"/>
   <link href="http://Derikulous.github.io/"/>
+
   <updated>2013-11-27T17:21:13-08:00</updated>
+
   <id>http://Derikulous.github.io/</id>
   <author>
     <name><![CDATA[Derik Strattan]]></name>
-    
+
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
+
   <entry>
+
+    <title type="html"><![CDATA[Splicing arrays]]></title>
+    <link href="http://Derikulous.github.ioyear/12/25/splicing-arrays/"/>
+    <updated>2013-12-25T19:25:00-08:00</updated>
+    <id>http://Derikulous.github.ioyear/12/25/splicing-arrays</id>
+    <content type="html"><![CDATA[<p><img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTyxXhXqKTH4NUHw7xq9TYKJ_pSt859FONRpsndwnub4fFW-7Cj" title="&#34;Ghost in the Shell&#34;" alt="&#34;Ghost in the Shell&#34;"></p>
+
+<p>Merry Christmas and happy holidays. Lately, I have been digging deeper to understand core Ruby principles away from web development. One of the tools that I am using are are the  <a href="http://rubykoans.com/">Ruby Koans</a> &ndash; a set of fun, challenging problems that build on each other as your progress through levels. As such, solving these problems is a great way to learn about Ruby syntax, and under-the-hood Rubyisms.<br></p>
+
+<p>I was working through a section in the Koans called &ldquo;about_arrays&rdquo;, specifically test_slicing_arays.</p>
+
+<p>For example:</p>
+
+<figure class='code'><figcaption><span>about_arrays.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">test_slicing_arrays</span>
+</span><span class='line'>  <span class="n">array</span> <span class="o">=</span> <span class="o">[</span><span class="ss">:peanut</span><span class="p">,</span> <span class="ss">:butter</span><span class="p">,</span> <span class="ss">:and</span><span class="p">,</span> <span class="ss">:jelly</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="n">__</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="n">__</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="n">__</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="n">__</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">20</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="n">__</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="n">__</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">100</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="n">__</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="o">]</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<br>
+
+
+<p>In this example, an array is defined and includes four symbols; <i>peanut</i>, <i>butter</i>, <i>and</i>, <i>jelly</i>. There are a number of assertions to be made. Where the underscore exists, the user submits their answer.
+For exampl:</p>
+
+<figure class='code'><figcaption><span>about_arrays.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">test_slicing_arrays</span>
+</span><span class='line'>  <span class="n">array</span> <span class="o">=</span> <span class="o">[</span><span class="ss">:peanut</span><span class="p">,</span> <span class="ss">:butter</span><span class="p">,</span> <span class="ss">:and</span><span class="p">,</span> <span class="ss">:jelly</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="o">[</span><span class="ss">:peanut</span><span class="o">]</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="o">[</span><span class="ss">:peanut</span><span class="p">,</span> <span class="ss">:butter</span><span class="o">]</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="o">[</span><span class="ss">:and</span><span class="p">,</span> <span class="ss">:jelly</span><span class="o">]</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="o">[</span><span class="ss">:and</span><span class="p">,</span> <span class="ss">:jelly</span><span class="o">]</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">20</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="o">[]</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="o">[]</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">100</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">assert_equal</span> <span class="kp">nil</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="o">]</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<br>
+
+
+<p>The first argument accepts the <b>&ldquo;lower bound&rdquo;</b>, while the second argument is the <b>&ldquo;range of elements&rdquo;</b> that you want to pull out of the array, beginning with the <b>&ldquo;lower bound&rdquo;</b>. So going through the list, I understood up until the last line: <code>ruby assert_equal nil, array[5,0]</code>.</p>
+
+<p>So, really, I didn&rsquo;t understand anything. After a lot of stackoverflow searching, I came across this <a href="http://stackoverflow.com/questions/3568222/array-slicing-in-ruby-looking-for-explanation-for-illogical-behaviour-taken-fr?rq=1">post</a>.</p>
+
+<p>What is exactly happening here?</p>
+
+<p>In my head, how I thought indices and arrays worked was this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="ss">:peanut</span>   <span class="ss">:butter</span>   <span class="ss">:and</span>   <span class="ss">:jelly</span>
+</span><span class='line'>     <span class="mi">0</span>         <span class="mi">1</span>        <span class="mi">2</span>       <span class="mi">3</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Following from this logic, then <code>[], array [4,0]</code> also wouldn&rsquo;t make sense, yet that is the solution. <em>Swoon</em></p>
+
+<p>According to the way splicing works, the indices are defined more like the following:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="ss">:peanut</span>   <span class="ss">:butter</span>   <span class="ss">:and</span>   <span class="ss">:jelly</span>
+</span><span class='line'><span class="mi">0</span>         <span class="mi">1</span>         <span class="mi">2</span>      <span class="mi">3</span>        <span class="mi">4</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<br>
+
+
+<p>It&rsquo;s now worth noting that finding the range of an array is different than finding index.
+When an array is spliced, as in <code>array[4,0]</code>, the splice does not identify the elements themselves, but places <strong>BETWEEN</strong> the elements. This is a key distinction from <code>array[4]</code>; here, Ruby is pointing at index 4. This would result in nil. Try it for yourself!</p>
+
+<p><strong>Simply put: slicing and indexing are different operations, and as such, include different operations, and shouldn&rsquo;t be directly compared.</strong></p>
+]]></content>
+  </entry>
+
+  <entry>
+>>>>>>> 802bc26c03c6067e70b1a5ca8ffc9e57bdd9188b
     <title type="html"><![CDATA[How to display FontAwesome in Firefox using Rails and CloudFront]]></title>
     <link href="http://Derikulous.github.ioyear/11/16/how-to-fontawesome/"/>
     <updated>2013-11-16T16:33:00-08:00</updated>
@@ -96,10 +208,12 @@ Let&rsquo;s find our fontawesome assets. In your terminal, go to: <code>~/projec
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
+
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">fontawesome</span><span class="o">-</span><span class="n">webfont</span><span class="o">-</span><span class="mi">4</span><span class="n">d228e1a1ddd570d6380dcd9b1a11d5c</span><span class="o">.</span><span class="n">ttf</span>
 </span><span class='line'><span class="n">fontawesome</span><span class="o">-</span><span class="n">webfont</span><span class="o">-</span><span class="mi">6</span><span class="n">cfa562c51325bb1df40b64732dc8699</span><span class="o">.</span><span class="n">woff</span>
 </span><span class='line'><span class="n">fontawesome</span><span class="o">-</span><span class="n">webfont</span><span class="o">-</span><span class="mi">9169</span><span class="n">b7b7c593388d41dd3c339df5b86b</span><span class="o">.</span><span class="n">svg</span>
 </span><span class='line'><span class="n">fontawesome</span><span class="o">-</span><span class="n">webfont</span><span class="o">-</span><span class="n">e742c0f297e307a74bdf4ca3c19073a2</span><span class="o">.</span><span class="n">eot</span>
+
 </span></code></pre></td></tr></table></div></figure></p>
 
 <p>Back in the CloudFront Panel, choose the tab <strong>Invalidations</strong>. Click <button>Create Invalidation</button>.
@@ -111,10 +225,12 @@ Paste in the above assets like this:
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
+
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">assets</span><span class="o">/</span><span class="n">fontawesome</span><span class="o">-</span><span class="n">webfont</span><span class="o">-</span><span class="mi">4</span><span class="n">d228e1a1ddd570d6380dcd9b1a11d5c</span><span class="o">.</span><span class="n">ttf</span>
 </span><span class='line'><span class="n">assets</span><span class="o">/</span><span class="n">fontawesome</span><span class="o">-</span><span class="n">webfont</span><span class="o">-</span><span class="mi">6</span><span class="n">cfa562c51325bb1df40b64732dc8699</span><span class="o">.</span><span class="n">woff</span>
 </span><span class='line'><span class="n">assets</span><span class="o">/</span><span class="n">fontawesome</span><span class="o">-</span><span class="n">webfont</span><span class="o">-</span><span class="mi">9169</span><span class="n">b7b7c593388d41dd3c339df5b86b</span><span class="o">.</span><span class="n">svg</span>
 </span><span class='line'><span class="n">assets</span><span class="o">/</span><span class="n">fontawesome</span><span class="o">-</span><span class="n">webfont</span><span class="o">-</span><span class="n">e742c0f297e307a74bdf4ca3c19073a2</span><span class="o">.</span><span class="n">eot</span>
+
 </span></code></pre></td></tr></table></div></figure>
 <br>
 <strong>IMPORTANT</strong> Don&rsquo;t forget to add <code>assets/</code> in front of the fontawesome.
@@ -191,7 +307,7 @@ You are now ready to push everything up to Heroku. Don&rsquo;t forget to manuall
   In the next blog, I will explain how I moved this blog over from <a href="https://www.heroku.com/">Heroku</a> to <a href="http://pages.github.com/">GitHub pages</a>. If this post helped you, feel free to leave a comment. Thanks and good luck coding!</p>
 ]]></content>
   </entry>
-  
+
   <entry>
     <title type="html"><![CDATA[Installing Twitter Bootstrap]]></title>
     <link href="http://Derikulous.github.ioyear/11/03/installing-twitter-bootstrap/"/>
@@ -303,7 +419,7 @@ I suggest diving deeper into all the benefits that Twitter Bootstrap provides. T
 <p>If you like what you&rsquo;ve seen so far, try your hand at implementing templates by following <strong><a href="https://speakerdeck.com/derikulous/picasso-pirate">this</a></strong> tutorial I created.</p>
 ]]></content>
   </entry>
-  
+
   <entry>
     <title type="html"><![CDATA[Hello, world]]></title>
     <link href="http://Derikulous.github.ioyear/10/28/hello-world/"/>
@@ -319,5 +435,5 @@ I suggest diving deeper into all the benefits that Twitter Bootstrap provides. T
 There&rsquo;s a better fix! In the gemfile, I deleted &lsquo;~> 0.9&rsquo; from the <strong>Rake</strong> gem. Then I went into the gemfile.lock file, searched for Rake, and changed the number 0.9.22 to <strong>10.1.0</strong>. Voila, rake now works!</p>
 ]]></content>
   </entry>
-  
+
 </feed>
