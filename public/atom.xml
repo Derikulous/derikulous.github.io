@@ -4,7 +4,7 @@
   <title><![CDATA[Derik Strattan's Blog]]></title>
   <link href="http://Derikulous.github.io/atom.xml" rel="self"/>
   <link href="http://Derikulous.github.io/"/>
-  <updated>2013-12-25T22:49:16-08:00</updated>
+  <updated>2013-12-27T19:39:19-08:00</updated>
   <id>http://Derikulous.github.io/</id>
   <author>
     <name><![CDATA[Derik Strattan]]></name>
@@ -12,6 +12,116 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Blackjack? A Rubeque splat problem.]]></title>
+    <link href="http://Derikulous.github.ioyear/12/27/blackjack-how-to-use-splat/"/>
+    <updated>2013-12-27T16:35:00-08:00</updated>
+    <id>http://Derikulous.github.ioyear/12/27/blackjack-how-to-use-splat</id>
+    <content type="html"><![CDATA[<p><img src="http://img62.imageshack.us/img62/2504/midgarmeteor.jpg" title="&#34;Final Fantasy VII Meteor&#34;" alt="&#34;Final Fantasy VII Meteor&#34;"></p>
+
+<p>In my previous <a href="https://derikulous.github.io/year/12/25/splicing-arrays/">post</a>, I explained in detail how Ruby handles splicing of an array, specifically index vs. position. I&rsquo;ve been working through Rubeque problems, and came up against a splat operator problem <b><a href="http://www.rubeque.com/problems/blackjack/solutions">here</a></b>. I had seen the splat operator a few times in Rails, but didn&rsquo;t have a solid grasp on its functionality.</p>
+
+<p>Before exploring the inner workings of the splat operator, and ultimately how to solve the Rubeque problem, let&rsquo;s review how we can add multiple arguments into a method:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="n">num_one</span><span class="p">,</span> <span class="n">num_two</span><span class="p">,</span> <span class="n">num_three</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">num_one</span> <span class="o">+</span> <span class="n">num_two</span> <span class="o">+</span> <span class="n">num_three</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="c1"># =&gt; 8</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The above example illustrates how to define a set of parameters for one method by separating each parameter with a comma. This code is easy to read, however it isn&rsquo;t DRY. Think about if you had a class and had to define multiple methods like this, each with multiple parameters. You can see how the above solution would get quickly obfuscated.</p>
+
+<p>So, to DRY up the code, we can use the splat operator. <b>What is a splat operator?</b>
+This fancy Ruby (also available in Python) operator defines a variable number of arguments (read: an unknown number of argument). It is defined with an asterisk, like so: <code>*args</code>. Using the first example, we could redefine the solution as such:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">sum</span> <span class="o">*</span><span class="n">num</span>
+</span><span class='line'>  <span class="n">num</span><span class="o">.</span><span class="n">inject</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">sum</span><span class="p">,</span> <span class="n">num</span><span class="o">|</span> <span class="n">sum</span> <span class="o">+</span> <span class="n">num</span> <span class="p">}</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Going through this step by step: <br>
+1) Define the sum method <code>def sum</code>. <br>
+2) Use the splat operator <code>*num</code> to define an argument <strong>num</strong>. <br>
+3) Whoa, what is inject? Don&rsquo;t panic&hellip; inject simply combines all elements by applying a binary operation, specified by the block <code>||</code>. .inject can be passed in an initial value, hence the <code>num.inject(0)</code>. If we used <code>num.inject(21)</code>, then we would begin summing values starting at 21. <br>
+4) Define the block. According to the <a href="http://www.ruby-doc.org/core-1.9.3/Enumerable.html#method-i-inject">Ruby docs</a>, the block takes in an accumulator <em>value</em> and an element.<br></p>
+
+<p>What does all of this mean? In plain English, it looks like this:<br></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">sum</span> <span class="n">begins</span> <span class="n">at</span> <span class="mi">0</span>
+</span><span class='line'><span class="n">sum</span> <span class="n">is</span> <span class="n">defined</span> <span class="n">as</span> <span class="n">an</span> <span class="n">array</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="o">]</span>
+</span><span class='line'><span class="n">the</span> <span class="n">first</span> <span class="n">value</span> <span class="k">in</span> <span class="n">the</span> <span class="n">array</span> <span class="n">is</span> <span class="n">passed</span> <span class="n">to</span> <span class="n">num</span><span class="p">,</span> <span class="k">in</span> <span class="n">this</span> <span class="k">case</span> <span class="n">value</span> <span class="n">equals</span> <span class="mi">1</span>
+</span><span class='line'><span class="n">sum</span> <span class="o">+</span> <span class="n">num</span> <span class="o">=&gt;</span> <span class="mi">0</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">=&gt;</span> <span class="mi">1</span>
+</span><span class='line'><span class="n">sum</span> <span class="n">now</span> <span class="n">equals</span> <span class="mi">1</span>
+</span><span class='line'><span class="n">the</span> <span class="n">second</span> <span class="n">value</span> <span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">in</span> <span class="n">the</span> <span class="n">array</span> <span class="n">is</span> <span class="n">passed</span> <span class="n">to</span> <span class="n">num</span>
+</span><span class='line'><span class="n">sum</span> <span class="o">+</span> <span class="n">num</span> <span class="o">=&gt;</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">=&gt;</span> <span class="mi">3</span>
+</span><span class='line'><span class="n">sum</span> <span class="n">now</span> <span class="n">equals</span> <span class="mi">3</span>
+</span><span class='line'><span class="n">the</span> <span class="n">last</span> <span class="n">value</span> <span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">in</span> <span class="n">the</span> <span class="n">array</span> <span class="n">is</span> <span class="n">passed</span> <span class="n">to</span> <span class="n">num</span>
+</span><span class='line'><span class="n">sum</span> <span class="o">+</span> <span class="n">num</span> <span class="o">=&gt;</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">=&gt;</span> <span class="mi">8</span>
+</span><span class='line'><span class="n">sum</span> <span class="n">now</span> <span class="n">equals</span> <span class="mi">8</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The Rubeque instructions are as follows: <strong>Write a method that takes any number of integers and returns true if they sum to 21, false otherwise. Hint: splat operator.</strong></p>
+
+<p>The final code that we want to match is</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">assert_equal</span> <span class="n">twenty_one?</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="kp">true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Since we know how to use the splat operator now, we can solve the problem:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">twenty_one?</span> <span class="o">*</span><span class="n">num</span>
+</span><span class='line'>  <span class="n">num</span><span class="o">.</span><span class="n">inject</span> <span class="p">{</span> <span class="o">|</span><span class="n">sum</span><span class="p">,</span> <span class="n">num</span><span class="o">|</span> <span class="n">sum</span> <span class="o">+</span> <span class="n">num</span> <span class="p">}</span> <span class="o">==</span> <span class="mi">21</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We did not need to explicitly define the beginning value in this case. Since Ruby 1.9+, the code can be further DRYed:<br></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">twenty_one?</span> <span class="o">*</span><span class="n">num</span>
+</span><span class='line'>  <span class="n">num</span><span class="o">.</span><span class="n">inject</span><span class="p">(</span><span class="ss">:+</span><span class="p">)</span> <span class="o">==</span> <span class="mi">21</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I hope you enjoyed reading this post on splat operators. I learned a great deal by writing it!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Splicing arrays]]></title>
