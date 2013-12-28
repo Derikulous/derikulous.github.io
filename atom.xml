@@ -4,19 +4,126 @@
   <title><![CDATA[Derik Strattan's Blog]]></title>
   <link href="http://Derikulous.github.io/atom.xml" rel="self"/>
   <link href="http://Derikulous.github.io/"/>
-
-  <updated>2013-11-27T17:21:13-08:00</updated>
-
+  <updated>2013-12-27T21:02:16-08:00</updated>
   <id>http://Derikulous.github.io/</id>
   <author>
     <name><![CDATA[Derik Strattan]]></name>
-
+    
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-
+  
   <entry>
+    <title type="html"><![CDATA[Blackjack? A Rubeque splat problem.]]></title>
+    <link href="http://Derikulous.github.ioyear/12/27/blackjack-how-to-use-splat/"/>
+    <updated>2013-12-27T16:35:00-08:00</updated>
+    <id>http://Derikulous.github.ioyear/12/27/blackjack-how-to-use-splat</id>
+    <content type="html"><![CDATA[<p><img src="http://img62.imageshack.us/img62/2504/midgarmeteor.jpg" title="&#34;Final Fantasy VII Meteor&#34;" alt="&#34;Final Fantasy VII Meteor&#34;"></p>
 
+<p>In my previous <a href="https://derikulous.github.io/year/12/25/splicing-arrays/">post</a>, I explained in detail how Ruby handles splicing of an array, specifically index vs. position. I&rsquo;ve been working through Rubeque problems, and came up against a splat operator problem <b><a href="http://www.rubeque.com/problems/blackjack/solutions">here</a></b>. I had seen the splat operator a few times in Rails, but didn&rsquo;t have a solid grasp on its functionality.</p>
+
+<p>Before exploring the inner workings of the splat operator, and ultimately how to solve the Rubeque problem, let&rsquo;s review how we can add multiple arguments into a method:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="n">num_one</span><span class="p">,</span> <span class="n">num_two</span><span class="p">,</span> <span class="n">num_three</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">num_one</span> <span class="o">+</span> <span class="n">num_two</span> <span class="o">+</span> <span class="n">num_three</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="c1"># =&gt; 8</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The above example illustrates how to define a set of parameters for one method by separating each parameter with a comma. This code is easy to read, however it isn&rsquo;t DRY. Think about if you had a class and had to define multiple methods like this, each with multiple parameters. You can see how the above solution would get quickly obfuscated.</p>
+
+<p>So, to DRY up the code, we can use the splat operator. <b>What is a splat operator?</b>
+This fancy Ruby (also available in Python) operator defines a variable number of arguments (read: an unknown number of argument). It is defined with an asterisk, like so: <code>*args</code>. Using the first example, we could redefine the solution as such:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">sum</span> <span class="o">*</span><span class="n">num</span>
+</span><span class='line'>  <span class="n">num</span><span class="o">.</span><span class="n">inject</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">sum</span><span class="p">,</span> <span class="n">num</span><span class="o">|</span> <span class="n">sum</span> <span class="o">+</span> <span class="n">num</span> <span class="p">}</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Going through this step by step: <br>
+1) Define the sum method <code>def sum</code>. <br>
+2) Use the splat operator <code>*num</code> to define an argument <strong>num</strong>. <br>
+3) Whoa, what is inject? Don&rsquo;t panic&hellip; inject simply combines all elements by applying a binary operation, specified by the block <code>||</code>. .inject can be passed in an initial value, hence the <code>num.inject(0)</code>. If we used <code>num.inject(21)</code>, then we would begin summing values starting at 21. <br>
+4) Define the block. According to the <a href="http://www.ruby-doc.org/core-1.9.3/Enumerable.html#method-i-inject">Ruby docs</a>, the block takes in an accumulator <em>value</em> and an element.<br></p>
+
+<p>What does all of this mean? In plain English, it looks like this:<br></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">sum</span> <span class="n">begins</span> <span class="n">at</span> <span class="mi">0</span>
+</span><span class='line'><span class="n">sum</span> <span class="n">is</span> <span class="n">defined</span> <span class="n">as</span> <span class="n">an</span> <span class="n">array</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="o">]</span>
+</span><span class='line'><span class="n">the</span> <span class="n">first</span> <span class="n">value</span> <span class="k">in</span> <span class="n">the</span> <span class="n">array</span> <span class="n">is</span> <span class="n">passed</span> <span class="n">to</span> <span class="n">num</span><span class="p">,</span> <span class="k">in</span> <span class="n">this</span> <span class="k">case</span> <span class="n">value</span> <span class="n">equals</span> <span class="mi">1</span>
+</span><span class='line'><span class="n">sum</span> <span class="o">+</span> <span class="n">num</span> <span class="o">=&gt;</span> <span class="mi">0</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">=&gt;</span> <span class="mi">1</span>
+</span><span class='line'><span class="n">sum</span> <span class="n">now</span> <span class="n">equals</span> <span class="mi">1</span>
+</span><span class='line'><span class="n">the</span> <span class="n">second</span> <span class="n">value</span> <span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">in</span> <span class="n">the</span> <span class="n">array</span> <span class="n">is</span> <span class="n">passed</span> <span class="n">to</span> <span class="n">num</span>
+</span><span class='line'><span class="n">sum</span> <span class="o">+</span> <span class="n">num</span> <span class="o">=&gt;</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">=&gt;</span> <span class="mi">3</span>
+</span><span class='line'><span class="n">sum</span> <span class="n">now</span> <span class="n">equals</span> <span class="mi">3</span>
+</span><span class='line'><span class="n">the</span> <span class="n">last</span> <span class="n">value</span> <span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">in</span> <span class="n">the</span> <span class="n">array</span> <span class="n">is</span> <span class="n">passed</span> <span class="n">to</span> <span class="n">num</span>
+</span><span class='line'><span class="n">sum</span> <span class="o">+</span> <span class="n">num</span> <span class="o">=&gt;</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">=&gt;</span> <span class="mi">8</span>
+</span><span class='line'><span class="n">sum</span> <span class="n">now</span> <span class="n">equals</span> <span class="mi">8</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The Rubeque instructions are as follows: <strong>Write a method that takes any number of integers and returns true if they sum to 21, false otherwise. Hint: splat operator.</strong></p>
+
+<p>The final code that we want to match is</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">assert_equal</span> <span class="n">twenty_one?</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="kp">true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Since we know how to use the splat operator now, we can solve the problem:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">twenty_one?</span> <span class="o">*</span><span class="n">num</span>
+</span><span class='line'>  <span class="n">num</span><span class="o">.</span><span class="n">inject</span> <span class="p">{</span> <span class="o">|</span><span class="n">sum</span><span class="p">,</span> <span class="n">num</span><span class="o">|</span> <span class="n">sum</span> <span class="o">+</span> <span class="n">num</span> <span class="p">}</span> <span class="o">==</span> <span class="mi">21</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We did not need to explicitly define the beginning value in this case. Since Ruby 1.9+, the code can be further DRYed:<br></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">twenty_one?</span> <span class="o">*</span><span class="n">num</span>
+</span><span class='line'>  <span class="n">num</span><span class="o">.</span><span class="n">inject</span><span class="p">(</span><span class="ss">:+</span><span class="p">)</span> <span class="o">==</span> <span class="mi">21</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I hope you enjoyed reading this post on splat operators. I learned a great deal by writing it!</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Splicing arrays]]></title>
     <link href="http://Derikulous.github.ioyear/12/25/splicing-arrays/"/>
     <updated>2013-12-25T19:25:00-08:00</updated>
@@ -123,9 +230,8 @@ When an array is spliced, as in <code>array[4,0]</code>, the splice does not ide
 <p><strong>Simply put: slicing and indexing are different operations, and as such, include different operations, and shouldn&rsquo;t be directly compared.</strong></p>
 ]]></content>
   </entry>
-
+  
   <entry>
->>>>>>> 802bc26c03c6067e70b1a5ca8ffc9e57bdd9188b
     <title type="html"><![CDATA[How to display FontAwesome in Firefox using Rails and CloudFront]]></title>
     <link href="http://Derikulous.github.ioyear/11/16/how-to-fontawesome/"/>
     <updated>2013-11-16T16:33:00-08:00</updated>
@@ -208,12 +314,10 @@ Let&rsquo;s find our fontawesome assets. In your terminal, go to: <code>~/projec
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">fontawesome</span><span class="o">-</span><span class="n">webfont</span><span class="o">-</span><span class="mi">4</span><span class="n">d228e1a1ddd570d6380dcd9b1a11d5c</span><span class="o">.</span><span class="n">ttf</span>
-</span><span class='line'><span class="n">fontawesome</span><span class="o">-</span><span class="n">webfont</span><span class="o">-</span><span class="mi">6</span><span class="n">cfa562c51325bb1df40b64732dc8699</span><span class="o">.</span><span class="n">woff</span>
-</span><span class='line'><span class="n">fontawesome</span><span class="o">-</span><span class="n">webfont</span><span class="o">-</span><span class="mi">9169</span><span class="n">b7b7c593388d41dd3c339df5b86b</span><span class="o">.</span><span class="n">svg</span>
-</span><span class='line'><span class="n">fontawesome</span><span class="o">-</span><span class="n">webfont</span><span class="o">-</span><span class="n">e742c0f297e307a74bdf4ca3c19073a2</span><span class="o">.</span><span class="n">eot</span>
-
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">fontawesome</span><span class="o">&ndash;</span><span class="n">webfont</span><span class="o">&ndash;</span><span class="mi">4</span><span class="n">d228e1a1ddd570d6380dcd9b1a11d5c</span><span class="o">.</span><span class="n">ttf</span>
+</span><span class='line'><span class="n">fontawesome</span><span class="o">&ndash;</span><span class="n">webfont</span><span class="o">&ndash;</span><span class="mi">6</span><span class="n">cfa562c51325bb1df40b64732dc8699</span><span class="o">.</span><span class="n">woff</span>
+</span><span class='line'><span class="n">fontawesome</span><span class="o">&ndash;</span><span class="n">webfont</span><span class="o">&ndash;</span><span class="mi">9169</span><span class="n">b7b7c593388d41dd3c339df5b86b</span><span class="o">.</span><span class="n">svg</span>
+</span><span class='line'><span class="n">fontawesome</span><span class="o">&ndash;</span><span class="n">webfont</span><span class="o">&ndash;</span><span class="n">e742c0f297e307a74bdf4ca3c19073a2</span><span class="o">.</span><span class="n">eot</span>
 </span></code></pre></td></tr></table></div></figure></p>
 
 <p>Back in the CloudFront Panel, choose the tab <strong>Invalidations</strong>. Click <button>Create Invalidation</button>.
@@ -225,12 +329,10 @@ Paste in the above assets like this:
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">assets</span><span class="o">/</span><span class="n">fontawesome</span><span class="o">-</span><span class="n">webfont</span><span class="o">-</span><span class="mi">4</span><span class="n">d228e1a1ddd570d6380dcd9b1a11d5c</span><span class="o">.</span><span class="n">ttf</span>
-</span><span class='line'><span class="n">assets</span><span class="o">/</span><span class="n">fontawesome</span><span class="o">-</span><span class="n">webfont</span><span class="o">-</span><span class="mi">6</span><span class="n">cfa562c51325bb1df40b64732dc8699</span><span class="o">.</span><span class="n">woff</span>
-</span><span class='line'><span class="n">assets</span><span class="o">/</span><span class="n">fontawesome</span><span class="o">-</span><span class="n">webfont</span><span class="o">-</span><span class="mi">9169</span><span class="n">b7b7c593388d41dd3c339df5b86b</span><span class="o">.</span><span class="n">svg</span>
-</span><span class='line'><span class="n">assets</span><span class="o">/</span><span class="n">fontawesome</span><span class="o">-</span><span class="n">webfont</span><span class="o">-</span><span class="n">e742c0f297e307a74bdf4ca3c19073a2</span><span class="o">.</span><span class="n">eot</span>
-
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">assets</span><span class="o">/</span><span class="n">fontawesome</span><span class="o">&ndash;</span><span class="n">webfont</span><span class="o">&ndash;</span><span class="mi">4</span><span class="n">d228e1a1ddd570d6380dcd9b1a11d5c</span><span class="o">.</span><span class="n">ttf</span>
+</span><span class='line'><span class="n">assets</span><span class="o">/</span><span class="n">fontawesome</span><span class="o">&ndash;</span><span class="n">webfont</span><span class="o">&ndash;</span><span class="mi">6</span><span class="n">cfa562c51325bb1df40b64732dc8699</span><span class="o">.</span><span class="n">woff</span>
+</span><span class='line'><span class="n">assets</span><span class="o">/</span><span class="n">fontawesome</span><span class="o">&ndash;</span><span class="n">webfont</span><span class="o">&ndash;</span><span class="mi">9169</span><span class="n">b7b7c593388d41dd3c339df5b86b</span><span class="o">.</span><span class="n">svg</span>
+</span><span class='line'><span class="n">assets</span><span class="o">/</span><span class="n">fontawesome</span><span class="o">&ndash;</span><span class="n">webfont</span><span class="o">&ndash;</span><span class="n">e742c0f297e307a74bdf4ca3c19073a2</span><span class="o">.</span><span class="n">eot</span>
 </span></code></pre></td></tr></table></div></figure>
 <br>
 <strong>IMPORTANT</strong> Don&rsquo;t forget to add <code>assets/</code> in front of the fontawesome.
@@ -307,7 +409,7 @@ You are now ready to push everything up to Heroku. Don&rsquo;t forget to manuall
   In the next blog, I will explain how I moved this blog over from <a href="https://www.heroku.com/">Heroku</a> to <a href="http://pages.github.com/">GitHub pages</a>. If this post helped you, feel free to leave a comment. Thanks and good luck coding!</p>
 ]]></content>
   </entry>
-
+  
   <entry>
     <title type="html"><![CDATA[Installing Twitter Bootstrap]]></title>
     <link href="http://Derikulous.github.ioyear/11/03/installing-twitter-bootstrap/"/>
@@ -419,7 +521,7 @@ I suggest diving deeper into all the benefits that Twitter Bootstrap provides. T
 <p>If you like what you&rsquo;ve seen so far, try your hand at implementing templates by following <strong><a href="https://speakerdeck.com/derikulous/picasso-pirate">this</a></strong> tutorial I created.</p>
 ]]></content>
   </entry>
-
+  
   <entry>
     <title type="html"><![CDATA[Hello, world]]></title>
     <link href="http://Derikulous.github.ioyear/10/28/hello-world/"/>
@@ -435,5 +537,5 @@ I suggest diving deeper into all the benefits that Twitter Bootstrap provides. T
 There&rsquo;s a better fix! In the gemfile, I deleted &lsquo;~> 0.9&rsquo; from the <strong>Rake</strong> gem. Then I went into the gemfile.lock file, searched for Rake, and changed the number 0.9.22 to <strong>10.1.0</strong>. Voila, rake now works!</p>
 ]]></content>
   </entry>
-
+  
 </feed>

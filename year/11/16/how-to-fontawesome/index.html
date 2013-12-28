@@ -6,9 +6,9 @@
 	<title>How to display FontAwesome in Firefox using Rails and CloudFront - Derik Strattan's Blog</title>
 	<meta name="author" content="Derik Strattan">
 
-
+	
 	<meta name="description" content="Winter is almost upon us; the perfect time for staying indoors and coding! Topics covered: Cloudfront configuration Cross-Origin Resource Sharing ( &hellip;">
-
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 	<link href="/atom.xml" rel="alternate" title="Derik Strattan's Blog" type="application/atom+xml">
@@ -17,10 +17,7 @@
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-
-	<link href="http://fonts.googleapis.com/css?family=Source+Code+Pro:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
-
+	
 </head>
 
 
@@ -29,9 +26,6 @@
 <nav id="main-nav"><ul class="main">
 	<li><a href="/">Blog</a></li>
 	<li><a href="/blog/archives">Archives</a></li>
-
-  <li><a href="http://derikstrattan.com">Portfolio</a></li>
-
 </ul>
 </nav>
 <nav id="mobile-nav">
@@ -40,9 +34,6 @@
 		<div class="container"><ul class="main">
 	<li><a href="/">Blog</a></li>
 	<li><a href="/blog/archives">Archives</a></li>
-
-  <li><a href="http://derikstrattan.com">Portfolio</a></li>
-
 </ul>
 </div>
 	</div>
@@ -58,25 +49,25 @@
 </nav>
 <nav id="sub-nav" class="alignright">
 	<div class="social">
-
-
-
+		
+		
+		
 		<a class="twitter" href="http://twitter.com/Derikulous" title="Twitter">Twitter</a>
-
-
+		
+		
 		<a class="github" href="https://github.com/Derikulous" title="GitHub">GitHub</a>
-
-
-
-
+		
+    
+		
+		
 		<a class="linkedin" href="http://www.linkedin.com/in/derikstrattan">LinkedIn</a>
-
-
-
-
+		
+		
+		
+		
 		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
-
-
+		
+    
 	</div>
 	<form class="search" action="http://google.com/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
@@ -84,13 +75,10 @@
 	</form>
 </nav>
 
-<a href="https://github.com/Derikulous"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
-
-
 </header>
-
-
-
+	
+		
+	
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">How to Display FontAwesome in Firefox Using Rails and CloudFront</h2>
 	<div class="entry-content"><p><img src="http://25.media.tumblr.com/8f8d4d311eeca74a0496233c087dbbae/tumblr_mw6av9Opmb1rbnw5do2_500.gif" title="&#34;5 cm per second&#34;" alt="&#34;5 cm per second&#34;"></p>
@@ -171,12 +159,10 @@ Let&rsquo;s find our fontawesome assets. In your terminal, go to: <code>~/projec
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">fontawesome</span><span class="o">-</span><span class="n">webfont</span><span class="o">-</span><span class="mi">4</span><span class="n">d228e1a1ddd570d6380dcd9b1a11d5c</span><span class="o">.</span><span class="n">ttf</span>
-</span><span class='line'><span class="n">fontawesome</span><span class="o">-</span><span class="n">webfont</span><span class="o">-</span><span class="mi">6</span><span class="n">cfa562c51325bb1df40b64732dc8699</span><span class="o">.</span><span class="n">woff</span>
-</span><span class='line'><span class="n">fontawesome</span><span class="o">-</span><span class="n">webfont</span><span class="o">-</span><span class="mi">9169</span><span class="n">b7b7c593388d41dd3c339df5b86b</span><span class="o">.</span><span class="n">svg</span>
-</span><span class='line'><span class="n">fontawesome</span><span class="o">-</span><span class="n">webfont</span><span class="o">-</span><span class="n">e742c0f297e307a74bdf4ca3c19073a2</span><span class="o">.</span><span class="n">eot</span>
-
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">fontawesome</span><span class="o">&ndash;</span><span class="n">webfont</span><span class="o">&ndash;</span><span class="mi">4</span><span class="n">d228e1a1ddd570d6380dcd9b1a11d5c</span><span class="o">.</span><span class="n">ttf</span>
+</span><span class='line'><span class="n">fontawesome</span><span class="o">&ndash;</span><span class="n">webfont</span><span class="o">&ndash;</span><span class="mi">6</span><span class="n">cfa562c51325bb1df40b64732dc8699</span><span class="o">.</span><span class="n">woff</span>
+</span><span class='line'><span class="n">fontawesome</span><span class="o">&ndash;</span><span class="n">webfont</span><span class="o">&ndash;</span><span class="mi">9169</span><span class="n">b7b7c593388d41dd3c339df5b86b</span><span class="o">.</span><span class="n">svg</span>
+</span><span class='line'><span class="n">fontawesome</span><span class="o">&ndash;</span><span class="n">webfont</span><span class="o">&ndash;</span><span class="n">e742c0f297e307a74bdf4ca3c19073a2</span><span class="o">.</span><span class="n">eot</span>
 </span></code></pre></td></tr></table></div></figure></p>
 
 <p>Back in the CloudFront Panel, choose the tab <strong>Invalidations</strong>. Click <button>Create Invalidation</button>.
@@ -188,12 +174,10 @@ Paste in the above assets like this:
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">assets</span><span class="o">/</span><span class="n">fontawesome</span><span class="o">-</span><span class="n">webfont</span><span class="o">-</span><span class="mi">4</span><span class="n">d228e1a1ddd570d6380dcd9b1a11d5c</span><span class="o">.</span><span class="n">ttf</span>
-</span><span class='line'><span class="n">assets</span><span class="o">/</span><span class="n">fontawesome</span><span class="o">-</span><span class="n">webfont</span><span class="o">-</span><span class="mi">6</span><span class="n">cfa562c51325bb1df40b64732dc8699</span><span class="o">.</span><span class="n">woff</span>
-</span><span class='line'><span class="n">assets</span><span class="o">/</span><span class="n">fontawesome</span><span class="o">-</span><span class="n">webfont</span><span class="o">-</span><span class="mi">9169</span><span class="n">b7b7c593388d41dd3c339df5b86b</span><span class="o">.</span><span class="n">svg</span>
-</span><span class='line'><span class="n">assets</span><span class="o">/</span><span class="n">fontawesome</span><span class="o">-</span><span class="n">webfont</span><span class="o">-</span><span class="n">e742c0f297e307a74bdf4ca3c19073a2</span><span class="o">.</span><span class="n">eot</span>
-
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">assets</span><span class="o">/</span><span class="n">fontawesome</span><span class="o">&ndash;</span><span class="n">webfont</span><span class="o">&ndash;</span><span class="mi">4</span><span class="n">d228e1a1ddd570d6380dcd9b1a11d5c</span><span class="o">.</span><span class="n">ttf</span>
+</span><span class='line'><span class="n">assets</span><span class="o">/</span><span class="n">fontawesome</span><span class="o">&ndash;</span><span class="n">webfont</span><span class="o">&ndash;</span><span class="mi">6</span><span class="n">cfa562c51325bb1df40b64732dc8699</span><span class="o">.</span><span class="n">woff</span>
+</span><span class='line'><span class="n">assets</span><span class="o">/</span><span class="n">fontawesome</span><span class="o">&ndash;</span><span class="n">webfont</span><span class="o">&ndash;</span><span class="mi">9169</span><span class="n">b7b7c593388d41dd3c339df5b86b</span><span class="o">.</span><span class="n">svg</span>
+</span><span class='line'><span class="n">assets</span><span class="o">/</span><span class="n">fontawesome</span><span class="o">&ndash;</span><span class="n">webfont</span><span class="o">&ndash;</span><span class="n">e742c0f297e307a74bdf4ca3c19073a2</span><span class="o">.</span><span class="n">eot</span>
 </span></code></pre></td></tr></table></div></figure>
 <br>
 <strong>IMPORTANT</strong> Don&rsquo;t forget to add <code>assets/</code> in front of the fontawesome.
@@ -281,7 +265,7 @@ You are now ready to push everything up to Heroku. Don&rsquo;t forget to manuall
 
 
 
-
+  
 
 
 <time datetime="2013-11-16T16:33:00-08:00" pubdate data-updated="true">Nov 16<span>th</span>, 2013</time></div>
@@ -292,20 +276,20 @@ You are now ready to push everything up to Heroku. Don&rsquo;t forget to manuall
 
 
 </div>
-
+	
 </div>
 </article>
 
 	<div class="share">
 	<div class="addthis_toolbox addthis_default_style ">
-
-
+		
+		
 		<a class="addthis_button_tweet"></a>
-
-
-
+		
+		
+		
 	</div>
-
+	
 </div>
 
 
