@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ruby | Derik Strattan's Blog]]></title>
+  <link href="http://Derikulous.github.io/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://Derikulous.github.io/"/>
+  <updated>2013-12-27T21:23:47-08:00</updated>
+  <id>http://Derikulous.github.io/</id>
+  <author>
+    <name><![CDATA[Derik Strattan]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Blackjack? A Rubeque splat problem.]]></title>
+    <link href="http://Derikulous.github.ioyear/12/27/blackjack-how-to-use-splat/"/>
+    <updated>2013-12-27T16:35:00-08:00</updated>
+    <id>http://Derikulous.github.ioyear/12/27/blackjack-how-to-use-splat</id>
+    <content type="html"><![CDATA[<p><img class="<a" src="href="http://img62.imageshack.us/img62/2504/midgarmeteor.jpg">http://img62.imageshack.us/img62/2504/midgarmeteor.jpg</a>" title="&ldquo;Final Fantasy VII Meteor&rdquo;" ></p>
+
+<p>In my previous <a href="https://derikulous.github.io/year/12/25/splicing-arrays/">post</a>, I explained in detail how Ruby handles splicing of an array, specifically index vs. position. I&rsquo;ve been working through Rubeque problems, and came up against a splat operator problem <b><a href="http://www.rubeque.com/problems/blackjack/solutions">here</a></b>. I had seen the splat operator a few times in Rails, but didn&rsquo;t have a solid grasp on its functionality.</p>
+
+<p>Before exploring the inner workings of the splat operator, and ultimately how to solve the Rubeque problem, let&rsquo;s review how we can add multiple arguments into a method:</p>
+
+<p>``` ruby
+def sum(num_one, num_two, num_three)
+  num_one + num_two + num_three
+end</p>
+
+<p>puts sum(1, 2, 5) # => 8
+```
+The above example illustrates how to define a set of parameters for one method by separating each parameter with a comma. This code is easy to read, however it isn&rsquo;t DRY. Think about if you had a class and had to define multiple methods like this, each with multiple parameters. You can see how the above solution would get quickly obfuscated.</p>
+
+<p>So, to DRY up the code, we can use the splat operator. <b>What is a splat operator?</b>
+This fancy Ruby (also available in Python) operator defines a variable number of arguments (read: an unknown number of argument). It is defined with an asterisk, like so: <code>*args</code>. Using the first example, we could redefine the solution as such:</p>
+
+<p>``` ruby
+def sum *num
+  num.inject(0) { |sum, num| sum + num }
+end</p>
+
+<p>puts sum(1, 2, 5)
+```</p>
+
+<p>Going through this step by step: <br>
+1) Define the sum method <code>def sum</code>. <br>
+2) Use the splat operator <code>*num</code> to define an argument <strong>num</strong>. <br>
+3) Whoa, what is inject? Don&rsquo;t panic&hellip; inject simply combines all elements by applying a binary operation, specified by the block <code>||</code>. .inject can be passed in an initial value, hence the <code>num.inject(0)</code>. If we used <code>num.inject(21)</code>, then we would begin summing values starting at 21. <br>
+4) Define the block. According to the <a href="http://www.ruby-doc.org/core-1.9.3/Enumerable.html#method-i-inject">Ruby docs</a>, the block takes in an accumulator <em>value</em> and an element.<br></p>
+
+<p>What does all of this mean? In plain English, it looks like this:<br>
+<code>ruby
+sum begins at 0
+sum is defined as an array [1, 2, 5]
+the first value in the array is passed to num, in this case value equals 1
+sum + num =&gt; 0 + 1 =&gt; 1
+sum now equals 1
+the second value (2) in the array is passed to num
+sum + num =&gt; 1 + 2 =&gt; 3
+sum now equals 3
+the last value (5) in the array is passed to num
+sum + num =&gt; 3 + 5 =&gt; 8
+sum now equals 8
+</code></p>
+
+<p>The Rubeque instructions are as follows: <strong>Write a method that takes any number of integers and returns true if they sum to 21, false otherwise. Hint: splat operator.</strong></p>
+
+<p>The final code that we want to match is
+<code>ruby
+assert_equal twenty_one?(3, 4, 5, 6, 3), true
+</code></p>
+
+<p>Since we know how to use the splat operator now, we can solve the problem:
+<code>ruby
+def twenty_one? *num
+  num.inject { |sum, num| sum + num } == 21
+end
+</code></p>
+
+<p>We did not need to explicitly define the beginning value in this case. Since Ruby 1.9+, the code can be further DRYed:<br>
+<code>ruby
+def twenty_one? *num
+  num.inject(:+) == 21
+end
+</code>
+I hope you enjoyed reading this post on splat operators. I learned a great deal by writing it!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Splicing arrays]]></title>
+    <link href="http://Derikulous.github.ioyear/12/25/splicing-arrays/"/>
+    <updated>2013-12-25T19:25:00-08:00</updated>
+    <id>http://Derikulous.github.ioyear/12/25/splicing-arrays</id>
+    <content type="html"><![CDATA[<p><img class="<a" src="href="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTyxXhXqKTH4NUHw7xq9TYKJ_pSt859FONRpsndwnub4fFW-7Cj">https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTyxXhXqKTH4NUHw7xq9TYKJ_pSt859FONRpsndwnub4fFW-7Cj</a>" title="&ldquo;Ghost in the Shell&rdquo;" ></p>
+
+<p>Merry Christmas and happy holidays. Lately, I have been digging deeper to understand core Ruby principles away from web development. One of the tools that I am using are are the  <a href="http://rubykoans.com/">Ruby Koans</a> &ndash; a set of fun, challenging problems that build on each other as your progress through levels. As such, solving these problems is a great way to learn about Ruby syntax, and under-the-hood Rubyisms.<br></p>
+
+<p>I was working through a section in the Koans called &ldquo;about_arrays&rdquo;, specifically test_slicing_arays.</p>
+
+<p>For example:
+``` ruby about_arrays.rb
+def test_slicing_arrays
+  array = [:peanut, :butter, :and, :jelly]</p>
+
+<p>  assert_equal <strong>, array[0,1]
+  assert_equal </strong>, array[0,2]
+  assert_equal <strong>, array[2,2]
+  assert_equal </strong>, array[2,20]
+  assert_equal <strong>, array[4,0]
+  assert_equal </strong>, array[4,100]
+  assert_equal __, array[5,0]
+end
+```</p>
+
+<br>
+
+
+<p>In this example, an array is defined and includes four symbols; <i>peanut</i>, <i>butter</i>, <i>and</i>, <i>jelly</i>. There are a number of assertions to be made. Where the underscore exists, the user submits their answer.
+For exampl:
+``` ruby about_arrays.rb
+def test_slicing_arrays
+  array = [:peanut, :butter, :and, :jelly]</p>
+
+<p>  assert_equal [:peanut], array[0,1]
+  assert_equal [:peanut, :butter], array[0,2]
+  assert_equal [:and, :jelly], array[2,2]
+  assert_equal [:and, :jelly], array[2,20]
+  assert_equal [], array[4,0]
+  assert_equal [], array[4,100]
+  assert_equal nil, array[5,0]
+end
+```</p>
+
+<br>
+
+
+<p>The first argument accepts the <b>&ldquo;lower bound&rdquo;</b>, while the second argument is the <b>&ldquo;range of elements&rdquo;</b> that you want to pull out of the array, beginning with the <b>&ldquo;lower bound&rdquo;</b>. So going through the list, I understood up until the last line: <code>ruby assert_equal nil, array[5,0]</code>.</p>
+
+<p>So, really, I didn&rsquo;t understand anything. After a lot of stackoverflow searching, I came across this <a href="http://stackoverflow.com/questions/3568222/array-slicing-in-ruby-looking-for-explanation-for-illogical-behaviour-taken-fr?rq=1">post</a>.</p>
+
+<p>What is exactly happening here?</p>
+
+<p>In my head, how I thought indices and arrays worked was this:
+``` ruby
+  :peanut   :butter   :and   :jelly</p>
+
+<pre><code> 0         1        2       3
+</code></pre>
+
+<p><code>
+Following from this logic, then</code> [], array [4,0] ``` also wouldn&rsquo;t make sense, yet that is the solution. <em>Swoon</em></p>
+
+<p>According to the way splicing works, the indices are defined more like the following:</p>
+
+<p><code>ruby
+  :peanut   :butter   :and   :jelly
+0         1         2      3        4
+</code></p>
+
+<br>
+
+
+<p>It&rsquo;s now worth noting that finding the range of an array is different than finding index.
+When an array is spliced, as in <code>array[4,0]</code>, the splice does not identify the elements themselves, but places <strong>BETWEEN</strong> the elements. This is a key distinction from <code>array[4]</code>; here, Ruby is pointing at index 4. This would result in nil. Try it for yourself!</p>
+
+<p><strong>Simply put: slicing and indexing are different operations, and as such, include different operations, and shouldn&rsquo;t be directly compared.</strong></p>
+]]></content>
+  </entry>
+  
+</feed>

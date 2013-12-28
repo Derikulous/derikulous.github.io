@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: front-end | Derik Strattan's Blog]]></title>
+  <link href="http://Derikulous.github.io/blog/categories/front-end/atom.xml" rel="self"/>
+  <link href="http://Derikulous.github.io/"/>
+  <updated>2013-12-27T21:23:47-08:00</updated>
+  <id>http://Derikulous.github.io/</id>
+  <author>
+    <name><![CDATA[Derik Strattan]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Installing Twitter Bootstrap]]></title>
+    <link href="http://Derikulous.github.ioyear/11/03/installing-twitter-bootstrap/"/>
+    <updated>2013-11-03T12:34:00-08:00</updated>
+    <id>http://Derikulous.github.ioyear/11/03/installing-twitter-bootstrap</id>
+    <content type="html"><![CDATA[<h1>Mission: Install and use Twitter Bootstrap with Ruby on Rails</h1>
+
+<h2><strong>Boss</strong>: Twitter Bootstrap</h2>
+
+<p>I remember when I first started using <a href="http://getbootstrap.com/">Twitter Bootstrap</a> in early Sept 2013. I really had no idea what I was doing, and spent countless hours ineffectively using the CSS files. As a result, I found myself very frustrated and wondering why this plugin was any better than just creating CSS from scratch. While participating in Startup Weekend, a friend showed me what I was doing wrong and my whole approach to using Twitter Bootstrap changed. I dove into the documentation and found a number of inspiring CSS/Javascript effects. In an effort to help others learn from my mistakes, I&rsquo;ve created the following tutorial to get you started on basic installation and usage in your Ruby on Rails project.</p>
+
+<h2><strong>Installation</strong></h2>
+
+<p>Installing Twitter Bootstrap in your rails project is mostly as simple as requiring it in your gemfile. However, there are a few flavors that you can install, as well as two versions (2.3.2 or 3.0.1).</p>
+
+<p>Variations include: <a href="https://github.com/anjlab/bootstrap-rails">Twitter Bootstrap Vanilla</a>,
+<a href="https://github.com/seyhunak/twitter-bootstrap-rails">Twitter Bootstrap with LESS</a>, or
+<a href="https://github.com/thomas-mcdonald/bootstrap-sass">Twitter Boostrap SASS</a>.</p>
+
+<p>For this tutorial, we will install Bootstrap with SASS. In your gemfile, include the following:</p>
+
+<p><code>ruby Gemfile https://github.com/thomas-mcdonald/bootstrap-sass Link
+gem 'sass-rails', '&gt;= 3.2' # sass-rails needs to be higher than 3.2
+gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass'
+</code>
+Now run <code>bundle install</code> in the command line. This will install version 3.0.1 of Twitter Bootstrap.</p>
+
+<p>Open up your project, and within the folder <strong>assets/stylesheets/</strong>, rename <strong>application.css</strong> to <strong>application.css.scss</strong>. Now add <code>@import "bootstrap";</code> anywhere in the file.<br>
+In <strong>assets/javascripts/</strong>, make sure the file looks <strong>EXACTLY</strong> like this:
+<code>ruby application.js
+//= require self
+//= require bootstrap
+//= require tree
+</code> This will preload all the javascript functionality that is included with Twitter Bootstrap.</p>
+
+<h2><strong>Modifying Bootstrap</strong></h2>
+
+<p>Now that Twitter Bootstrap has been installed, we can customize the pages by calling in special classes provided by Bootstrap. What do I mean by <em>special classes</em>? This is where the <strong><a href="http://getbootstrap.com/css/">documentation</a></strong> becomes important. Here is where I must stress the importance of following the documentation examples, so that you can easily learn and manifest the Twitter Bootstrap functionality.</p>
+
+<h3>Examples</h3>
+
+<p>As of this post, I have been using Twitter Bootstrap for two months. In this short time, I have used the following functionality the most:<br>
+<strong>Jumbotron<br></strong>
+<strong>Grid System<br></strong>
+<strong>Buttons<br></strong></p>
+
+<p>Let&rsquo;s run through a quick implementation of these key pieces of Twitter Bootstrap.</p>
+
+<h3><strong><a href="http://getbootstrap.com/components/#jumbotron">Jumbotron</a></strong></h3>
+
+<p>This component adds a container component with specific styling to your page, which calls attention to anything written in it. It can be implemented easily by calling a &ldquo;jumbotron&rdquo; on a div. It looks like this:
+``` ruby custom.css.scss</p>
+
+<div class="jumbotron">
+  <h1>Hello, world!</h1>
+  <p>...</p>
+  <p><a class="btn btn-primary btn-lg" role="button">Learn more</a></p>
+</div>
+
+
+<p>```
+That jumbotron class is all that you need to specify to add this special functionality in your stylesheet! You can also see that there&rsquo;s another class in this code <strong>&ldquo;btn btn-primary btn-lrg&rdquo;</strong>. I&rsquo;ll introduce this now.</p>
+
+<h3><strong><a href="http://getbootstrap.com/css/#buttons">Buttons</a></strong></h3>
+
+<p>This component, as you have probably guessed, adds great looking buttons into your CSS. Taking the above example, <code>&lt;p&gt;&lt;a class="btn btn-primary btn-lg" role="button"&gt;Learn more&lt;/a&gt;&lt;/p&gt;</code>, this adds a button by calling &ldquo;btn&rdquo;, followed by the color of the button &ldquo;btn-primary&rdquo;, and lastly the size is specified with &ldquo;btn-lg&rdquo;. There are <strong>six</strong> button colors: &ldquo;btn-default&rdquo;, &ldquo;btn-primary&rdquo;, &ldquo;btn-success&rdquo;, &ldquo;btn-info&rdquo;, &ldquo;btn-warning&rdquo;, and &ldquo;btn-danger&rdquo;. There are also four sizes: <strong>Large</strong>:&ldquo;btn-lg&rdquo;, Default (doesn&rsquo;t require any specification), <strong>Small</strong>: &ldquo;btn-sm&rdquo;, and <strong>Extra Small</strong>: &ldquo;btn-xs&rdquo;.</p>
+
+<h3><strong><a href="http://getbootstrap.com/css/#grid">Grid System</a></strong></h3>
+
+<p>This is arguably the most important component of Twitter Bootstrap. This class specification uses a 12 grid system, with responsive scale, to add size and location to DIV classes. I suggest following the link and reading more about this class. The class is called by the following command:
+``` ruby custom.css.scss</p>
+
+<div class="row">
+  <div class="col-md-1">This is a medium size, 1 grid column</div>
+</div>
+
+
+<p>```
+The grid system comes in large, medium, small, and extra-small variations.</p>
+
+<h2><strong>Templates</strong></h2>
+
+<p>Thanks to Twitter Bootstrap&rsquo;s popularity amongst web developers and designers, a number of free and paid-for templates exist for Twitter Bootstrap v2.3.2 and v3.0. These are a few of my favorite sites: <br>
+<strong>FREE:</strong><br>
+<a href="http://bootswatch.com/">Bootswatch</a><br>
+<a href="http://bootstrapstyler.com/">Bootstrapstyler</a><br>
+<strong>PAID:</strong> <br>
+<a href="ttps://wrapbootstrap.com/">Wrap Bootstrap</a><br>
+In fact, it&rsquo;s easy to implement themes from <strong>Bootswatch</strong> by specifying in your <code>application.css.scss</code> file, <code>@import "bootstrap/Flatly"</code>. This will import the <strong><a href="http://bootswatch.com/flatly/">Flatly</a></strong> theme from Bootswatch in your project.<br>
+I suggest diving deeper into all the benefits that Twitter Bootstrap provides. Try out <strong><a href="http://fontawesome.io/">Font-Awesome</a></strong> and <strong><a href="http://getbootstrap.com/components/#glyphicons">Glyphicons</a></strong></p>
+
+<h2><strong>Links</strong></h2>
+
+<p>If you like what you&rsquo;ve seen so far, try your hand at implementing templates by following <strong><a href="https://speakerdeck.com/derikulous/picasso-pirate">this</a></strong> tutorial I created.</p>
+]]></content>
+  </entry>
+  
+</feed>

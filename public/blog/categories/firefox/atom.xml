@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Firefox | Derik Strattan's Blog]]></title>
+  <link href="http://Derikulous.github.io/blog/categories/firefox/atom.xml" rel="self"/>
+  <link href="http://Derikulous.github.io/"/>
+  <updated>2013-12-27T21:23:47-08:00</updated>
+  <id>http://Derikulous.github.io/</id>
+  <author>
+    <name><![CDATA[Derik Strattan]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to display FontAwesome in Firefox using Rails and CloudFront]]></title>
+    <link href="http://Derikulous.github.ioyear/11/16/how-to-fontawesome/"/>
+    <updated>2013-11-16T16:33:00-08:00</updated>
+    <id>http://Derikulous.github.ioyear/11/16/how-to-fontawesome</id>
+    <content type="html"><![CDATA[<p><img class="<a" src="href="http://25.media.tumblr.com/8f8d4d311eeca74a0496233c087dbbae/tumblr_mw6av9Opmb1rbnw5do2_500.gif">http://25.media.tumblr.com/8f8d4d311eeca74a0496233c087dbbae/tumblr_mw6av9Opmb1rbnw5do2_500.gif</a>" title="&ldquo;5 cm per second&rdquo;" ></p>
+
+<h3> Winter is almost upon us; the perfect time for staying indoors and coding!</h3>
+
+
+<h1>Topics covered:</h1>
+
+<ol>
+  <li>Cloudfront configuration</li>
+  <li>Cross-Origin Resource Sharing (CORS) gem</li>
+</ol>
+
+
+<h1>What are we learning?</h1>
+
+<p>
+  In my <a href="https://derikulous.github.io/year/11/03/installing-twitter-bootstrap/"> earlier</a> post, I described how to install Twitter Bootstrap in your Rails project. Today, I was updating my <a href="http://www.derikstrattan.com/">portfolio</a> to use <a href="http://aws.amazon.com/cloudfront/"> CloudFront</a> as a content delivery service. After opening the page in Firefox, I noticed that the <a href="http://fontawesome.io/"> FontAwesome</a> icons were missing. This problem did NOT occur when the page was opened with Chrome or Safari. After more than 4 hours of troubleshooting, I had the page loading properly in Firefox. I sincerely hope that this post saves you countless hours and head scratching. Feel free to leave comments or suggestions. ^.^
+</p>
+
+
+<h1>FontAwesome</h1>
+
+<p>
+  When you download FontAwesome, you will notice that there are 4 different files. What are these? FontAwesome comes in multiple formats so the maximum number of users (read: browsers) can see your fonts:
+  <ol>
+    <li>Safari & Opera browsers = .toff & .otf</li>
+    <li>IE9+, Firefox, Chrome = .woff</li>
+    <li>iOS and Android = .svg</li>
+    <li>IE8 and older = .eot</li>
+  </ol>
+</p>
+
+
+<h1>HTTP Caching</h1>
+
+<p>
+  Before we dive head-first into setting up CloudFront, it's worth taking a slight detour to learn about HTTP caching and headers. According to <a href="https://devcenter.heroku.com/articles/increasing-application-performance-with-http-cache-headers"> Heroku</a>, "HTTP caching occurs when the browser stores local copies of web resources for faster retrieval the next time the resource is required. As your application serves resources it can attach cache headers to the response specifying the desired cache behavior." For our purposes, we need to understand <b>cache header</b>.
+</p>
+
+
+<p>
+  Firefox and IE9+ reject all cross-site font requests unless some specific headers are set, i.e. ```Access-Control-Allow-Origin```. In other words, Firefox will not display a font if you use CloudFront to deliver content. For in-depth understanding, read more <a href="http://www.bryandragon.com/articles/rails-asset-pipeline-cdns-and-serving-cross-domain-fonts/">here</a> and <a href="http://stackoverflow.com/questions/11261805/rails-3-font-face-failing-in-production-with-firefox">here</a>. We'll need to figure out a way to allow Firefox access to the fonts.
+</p>
+
+
+<h1>Configuring CloudFront</h1>
+
+<p>
+  <img src="https://www.llamaproducts.com/assets/product_pics/decal_meat_n_taters.gif"> <br> Ahhh, we have finally arrived at the meat and 'taters of this article. Let's set up CloudFront (if you have questions, refer to this <a href="https://devcenter.heroku.com/articles/using-amazon-cloudfront-cdn-with-rails#testing"><i>post</i></a> on Heroku. But first, what <b>IS</b> CloudFront? Many developers use Amazon S3 (simple storage service) to store static assets (e.g. images, javascript, CSS). It is also sometimes used to <b>serve</b> those assets, but this is not recommended because the S3 was not designed to serve files when your website is under heavy traffic. CloudFront is referred to as a Content Delivery Network (CDN), and acts to serve those assets that you stored on S3.
+</p>
+
+
+<h2>CloudFront setup</h2>
+
+<p>
+  <ol>
+    <li>Make an <a href="http://aws.amazon.com">AWS account</a>.</li>
+    <li>Login to your account, and go to <a href="https://console.aws.amazon.com/cloudfront/home">CloudFront control panel</a>. Click 'Create distribution', and when prompted for the delivery method, select 'Web'. For now, use defaults. NOTE: If you wish to use CNAME, you must enter your domain under 'Origin Domain Name'. </li><br> <img src="https://s3.amazonaws.com/heroku.devcenter/heroku_assets/images/224-original.jpg">
+  </ol>
+</p>
+
+
+<h2>Configure CloudFront and Rails</h2>
+
+<p><p>
+  1) In your Rails application, go to <code>config/environments/production.rb</code>.<br>
+  2) Look for the setting labelled <code>asset_host</code>. This setting is responsible for prepending a domain onto all asset links created via the built in asset helpers.<br>
+  3) In your CloudFront Management Console, select the distribution that you created. Click the link &ldquo;Distribution Settings&rdquo;. Look for the subheader <b>Domain Name</b>, and copy that domain name. In your Rails app, paste in the domain: <code>config.action_controller.asset_host = "&lt; YOUR DISTRIBUTION SUBDOMAIN&gt;.cloudfront.net"</code>.
+</p></p>
+
+<h2>Purge content from CloudFront</h2>
+
+<p>We need to create an invalidation in the <a href="https://console.aws.amazon.com/cloudfront/home">CloudFront Panel</a>.To read more about why, go <a href="http://www.red-team-design.com/firefox-doesnt-allow-cross-domain-fonts-by-default">here</a> <br>
+Let&rsquo;s find our fontawesome assets. In your terminal, go to: <code>~/project_name/public/assets</code> and type <code>ls -al fontawesome-webfont-*.*</code>. You should see something like this:
+<code>ruby public/assets
+fontawesome-webfont-4d228e1a1ddd570d6380dcd9b1a11d5c.ttf
+fontawesome-webfont-6cfa562c51325bb1df40b64732dc8699.woff
+fontawesome-webfont-9169b7b7c593388d41dd3c339df5b86b.svg
+fontawesome-webfont-e742c0f297e307a74bdf4ca3c19073a2.eot
+</code></p>
+
+<p>Back in the CloudFront Panel, choose the tab <strong>Invalidations</strong>. Click <button>Create Invalidation</button>.
+<br>
+<img class="<a" src="href="http://user-image.logdown.io/user/1/blog/317/post/52439/eWU50lLhRqWSbj89efo7_invalid1.png">http://user-image.logdown.io/user/1/blog/317/post/52439/eWU50lLhRqWSbj89efo7_invalid1.png</a>" title="&ldquo;blog.xdite&rdquo;" >
+<br>
+Paste in the above assets like this:
+<code>ruby
+assets/fontawesome-webfont-4d228e1a1ddd570d6380dcd9b1a11d5c.ttf
+assets/fontawesome-webfont-6cfa562c51325bb1df40b64732dc8699.woff
+assets/fontawesome-webfont-9169b7b7c593388d41dd3c339df5b86b.svg
+assets/fontawesome-webfont-e742c0f297e307a74bdf4ca3c19073a2.eot
+</code>
+<br>
+<strong>IMPORTANT</strong> Don&rsquo;t forget to add <code>assets/</code> in front of the fontawesome.
+<br>
+Click <button>Invalidate</button>. Now wait for 5-10 minutes CDN cache to become invalidated.</p>
+
+<h1>Install the CORS gem</h1>
+
+<p>In your Gemfile:
+<code>
+gem 'rack-cors', :require =&gt; 'rack/cors'
+</code>
+Run <code>bundle</code>.
+<br>
+In your project folder, go to: <code>config/application.rb</code> and add the following:
+<br>
+``` ruby config/application.rb
+module Portfolio
+  class Application &lt; Rails::Application
+  # &hellip;</p>
+
+<pre><code>config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
+allow do
+  origins '*'
+  resource '*',
+  headers: :any,
+  methods: [:get, :options]
+end
+</code></pre>
+
+<p>  end
+  #&hellip;</p>
+
+<pre><code>config.assets.paths &lt;&lt; Rails.root.join("app", "assets")
+config.assets.precompile += %w( .svg .eot .woff .ttf )
+config.assets.header_rules = {
+  :global =&gt; {'Cache-Control' =&gt; 'public, max-age=31536000'},
+  :fonts  =&gt; {'Access-Control-Allow-Origin' =&gt; '*'}
+}
+</code></pre>
+
+<p>  end
+end
+<code>
+&lt;br&gt;
+The first part of this configuration puts the CORS gem at the top of your stack. Confirm this by running</code> rake middleware <code>in your terminal. Any header is now able to be retrieved via the</code> get <code>method. The second part precompiles the FontAwesome assets by specifically looking for their file extension. It also allows font control via the</code> header_rules ```.</p>
+
+<h2><strong>Push to Heroku</strong></h2>
+
+<p><p>
+You are now ready to push everything up to Heroku. Don&rsquo;t forget to manually precompile assets, if necessary.
+</p></p>
+
+<h3>Additional Resources</h3>
+
+<p><a href="https://github.com/rumblelabs/asset_sync">Rails, S3, and asset sync</a><br>
+<a href="https://devcenter.heroku.com/articles/http-caching-ruby-rails">HTTP caching with Rails</a><br>
+<a href="https://devcenter.heroku.com/articles/rack-cache-memcached-rails31">Rack::Cache</a></p>
+
+<p><h3> What&rsquo;s next?</h3>
+  In the next blog, I will explain how I moved this blog over from <a href="https://www.heroku.com/">Heroku</a> to <a href="http://pages.github.com/">GitHub pages</a>. If this post helped you, feel free to leave a comment. Thanks and good luck coding!</p>
+]]></content>
+  </entry>
+  
+</feed>

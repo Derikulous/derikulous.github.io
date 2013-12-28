@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Splicing | Derik Strattan's Blog]]></title>
+  <link href="http://Derikulous.github.io/blog/categories/splicing/atom.xml" rel="self"/>
+  <link href="http://Derikulous.github.io/"/>
+  <updated>2013-12-27T21:23:47-08:00</updated>
+  <id>http://Derikulous.github.io/</id>
+  <author>
+    <name><![CDATA[Derik Strattan]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Splicing arrays]]></title>
+    <link href="http://Derikulous.github.ioyear/12/25/splicing-arrays/"/>
+    <updated>2013-12-25T19:25:00-08:00</updated>
+    <id>http://Derikulous.github.ioyear/12/25/splicing-arrays</id>
+    <content type="html"><![CDATA[<p><img class="<a" src="href="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTyxXhXqKTH4NUHw7xq9TYKJ_pSt859FONRpsndwnub4fFW-7Cj">https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTyxXhXqKTH4NUHw7xq9TYKJ_pSt859FONRpsndwnub4fFW-7Cj</a>" title="&ldquo;Ghost in the Shell&rdquo;" ></p>
+
+<p>Merry Christmas and happy holidays. Lately, I have been digging deeper to understand core Ruby principles away from web development. One of the tools that I am using are are the  <a href="http://rubykoans.com/">Ruby Koans</a> &ndash; a set of fun, challenging problems that build on each other as your progress through levels. As such, solving these problems is a great way to learn about Ruby syntax, and under-the-hood Rubyisms.<br></p>
+
+<p>I was working through a section in the Koans called &ldquo;about_arrays&rdquo;, specifically test_slicing_arays.</p>
+
+<p>For example:
+``` ruby about_arrays.rb
+def test_slicing_arrays
+  array = [:peanut, :butter, :and, :jelly]</p>
+
+<p>  assert_equal <strong>, array[0,1]
+  assert_equal </strong>, array[0,2]
+  assert_equal <strong>, array[2,2]
+  assert_equal </strong>, array[2,20]
+  assert_equal <strong>, array[4,0]
+  assert_equal </strong>, array[4,100]
+  assert_equal __, array[5,0]
+end
+```</p>
+
+<br>
+
+
+<p>In this example, an array is defined and includes four symbols; <i>peanut</i>, <i>butter</i>, <i>and</i>, <i>jelly</i>. There are a number of assertions to be made. Where the underscore exists, the user submits their answer.
+For exampl:
+``` ruby about_arrays.rb
+def test_slicing_arrays
+  array = [:peanut, :butter, :and, :jelly]</p>
+
+<p>  assert_equal [:peanut], array[0,1]
+  assert_equal [:peanut, :butter], array[0,2]
+  assert_equal [:and, :jelly], array[2,2]
+  assert_equal [:and, :jelly], array[2,20]
+  assert_equal [], array[4,0]
+  assert_equal [], array[4,100]
+  assert_equal nil, array[5,0]
+end
+```</p>
+
+<br>
+
+
+<p>The first argument accepts the <b>&ldquo;lower bound&rdquo;</b>, while the second argument is the <b>&ldquo;range of elements&rdquo;</b> that you want to pull out of the array, beginning with the <b>&ldquo;lower bound&rdquo;</b>. So going through the list, I understood up until the last line: <code>ruby assert_equal nil, array[5,0]</code>.</p>
+
+<p>So, really, I didn&rsquo;t understand anything. After a lot of stackoverflow searching, I came across this <a href="http://stackoverflow.com/questions/3568222/array-slicing-in-ruby-looking-for-explanation-for-illogical-behaviour-taken-fr?rq=1">post</a>.</p>
+
+<p>What is exactly happening here?</p>
+
+<p>In my head, how I thought indices and arrays worked was this:
+``` ruby
+  :peanut   :butter   :and   :jelly</p>
+
+<pre><code> 0         1        2       3
+</code></pre>
+
+<p><code>
+Following from this logic, then</code> [], array [4,0] ``` also wouldn&rsquo;t make sense, yet that is the solution. <em>Swoon</em></p>
+
+<p>According to the way splicing works, the indices are defined more like the following:</p>
+
+<p><code>ruby
+  :peanut   :butter   :and   :jelly
+0         1         2      3        4
+</code></p>
+
+<br>
+
+
+<p>It&rsquo;s now worth noting that finding the range of an array is different than finding index.
+When an array is spliced, as in <code>array[4,0]</code>, the splice does not identify the elements themselves, but places <strong>BETWEEN</strong> the elements. This is a key distinction from <code>array[4]</code>; here, Ruby is pointing at index 4. This would result in nil. Try it for yourself!</p>
+
+<p><strong>Simply put: slicing and indexing are different operations, and as such, include different operations, and shouldn&rsquo;t be directly compared.</strong></p>
+]]></content>
+  </entry>
+  
+</feed>
