@@ -4,15 +4,17 @@
   <title><![CDATA[Category: Splat | Derik Strattan's Blog]]></title>
   <link href="http://Derikulous.github.io/blog/categories/splat/atom.xml" rel="self"/>
   <link href="http://Derikulous.github.io/"/>
+
   <updated>2013-12-27T22:18:55-08:00</updated>
+
   <id>http://Derikulous.github.io/</id>
   <author>
     <name><![CDATA[Derik Strattan]]></name>
-    
+
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
+
   <entry>
     <title type="html"><![CDATA[Blackjack? A Rubeque splat problem.]]></title>
     <link href="http://Derikulous.github.ioyear/12/27/blackjack-how-to-use-splat/"/>
@@ -88,5 +90,5 @@ end
 I hope you enjoyed reading this post on splat operators. I learned a great deal by writing it!</p>
 ]]></content>
   </entry>
-  
+
 </feed>
