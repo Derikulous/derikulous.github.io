@@ -4,17 +4,15 @@
   <title><![CDATA[Category: Twitter Bootstrap | Derik Strattan's Blog]]></title>
   <link href="http://Derikulous.github.io/blog/categories/twitter-bootstrap/atom.xml" rel="self"/>
   <link href="http://Derikulous.github.io/"/>
-
-  <updated>2013-12-27T22:18:55-08:00</updated>
-
+  <updated>2014-01-03T16:45:30-08:00</updated>
   <id>http://Derikulous.github.io/</id>
   <author>
     <name><![CDATA[Derik Strattan]]></name>
-
+    
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-
+  
   <entry>
     <title type="html"><![CDATA[Installing Twitter Bootstrap]]></title>
     <link href="http://Derikulous.github.ioyear/11/03/installing-twitter-bootstrap/"/>
@@ -111,5 +109,5 @@ I suggest diving deeper into all the benefits that Twitter Bootstrap provides. T
 <p>If you like what you&rsquo;ve seen so far, try your hand at implementing templates by following <strong><a href="https://speakerdeck.com/derikulous/picasso-pirate">this</a></strong> tutorial I created.</p>
 ]]></content>
   </entry>
-
+  
 </feed>
