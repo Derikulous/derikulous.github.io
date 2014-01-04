@@ -7,7 +7,7 @@ categories: [Ruby, Splicing]
 ---
 {% img https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTyxXhXqKTH4NUHw7xq9TYKJ_pSt859FONRpsndwnub4fFW-7Cj "Ghost in the Shell" %}
 
-Merry Christmas and happy holidays. Lately, I have been digging deeper to understand core Ruby principles away from web development. One of the tools that I am using are are the  [Ruby Koans](http://rubykoans.com/) - a set of fun, challenging problems that build on each other as your progress through levels. As such, solving these problems is a great way to learn about Ruby syntax, and under-the-hood Rubyisms.<br>
+Merry Christmas and happy holidays. Lately, I have been digging deeper to understand core Ruby principles away from web development. One of the tools that I am using are the  [Ruby Koans](http://rubykoans.com/) - a set of fun, challenging problems that build on each other as you progress through levels. As such, solving these problems is a great way to learn about Ruby syntax, and under-the-hood Rubyisms.<br>
 
 I was working through a section in the Koans called "about_arrays", specifically test_slicing_arays.
 
