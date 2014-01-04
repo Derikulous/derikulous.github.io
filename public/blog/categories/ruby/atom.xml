@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Derik Strattan's Blog]]></title>
   <link href="http://Derikulous.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://Derikulous.github.io/"/>
-  <updated>2013-12-27T22:24:49-08:00</updated>
+  <updated>2014-01-03T16:45:30-08:00</updated>
   <id>http://Derikulous.github.io/</id>
   <author>
     <name><![CDATA[Derik Strattan]]></name>
@@ -96,7 +96,7 @@ I hope you enjoyed reading this post on splat operators. I learned a great deal 
     <id>http://Derikulous.github.ioyear/12/25/splicing-arrays</id>
     <content type="html"><![CDATA[<p><img class="<a" src="href="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTyxXhXqKTH4NUHw7xq9TYKJ_pSt859FONRpsndwnub4fFW-7Cj">https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTyxXhXqKTH4NUHw7xq9TYKJ_pSt859FONRpsndwnub4fFW-7Cj</a>" title="&ldquo;Ghost in the Shell&rdquo;" ></p>
 
-<p>Merry Christmas and happy holidays. Lately, I have been digging deeper to understand core Ruby principles away from web development. One of the tools that I am using are are the  <a href="http://rubykoans.com/">Ruby Koans</a> &ndash; a set of fun, challenging problems that build on each other as your progress through levels. As such, solving these problems is a great way to learn about Ruby syntax, and under-the-hood Rubyisms.<br></p>
+<p>Merry Christmas and happy holidays. Lately, I have been digging deeper to understand core Ruby principles away from web development. One of the tools that I am using are the  <a href="http://rubykoans.com/">Ruby Koans</a> &ndash; a set of fun, challenging problems that build on each other as you progress through levels. As such, solving these problems is a great way to learn about Ruby syntax, and under-the-hood Rubyisms.<br></p>
 
 <p>I was working through a section in the Koans called &ldquo;about_arrays&rdquo;, specifically test_slicing_arays.</p>
 

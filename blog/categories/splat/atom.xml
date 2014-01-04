@@ -4,11 +4,15 @@
   <title><![CDATA[Category: Splat | Derik Strattan's Blog]]></title>
   <link href="http://Derikulous.github.io/blog/categories/splat/atom.xml" rel="self"/>
   <link href="http://Derikulous.github.io/"/>
+<<<<<<< HEAD:blog/categories/splat/atom.xml
 
 
   <updated>2013-12-27T22:18:55-08:00</updated>
 
 
+=======
+  <updated>2014-01-03T16:45:30-08:00</updated>
+>>>>>>> source:public/blog/categories/splat/atom.xml
   <id>http://Derikulous.github.io/</id>
   <author>
     <name><![CDATA[Derik Strattan]]></name>
